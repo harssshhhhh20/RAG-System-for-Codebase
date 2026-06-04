@@ -1,0 +1,17 @@
+# Vector DB
+db/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+rag/
+.env/
+
+# macOS
+.DS_Store
+
+# Personal documents
+data/harsh_maurya_resume.pdf
