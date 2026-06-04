@@ -2,7 +2,7 @@ from langchain_ollama import ChatOllama
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
-DB_PATH = 'db'
+DB_PATH = "db"
 
 embeddings = HuggingFaceEmbeddings(
     model_name = "BAAI/bge-small-en-v1.5"
