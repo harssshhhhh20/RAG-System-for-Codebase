@@ -1,0 +1,26 @@
+Company A: TechNova Solutions
+
+TechNova Solutions is a software development company founded in 2015.
+The company specializes in cloud computing, artificial intelligence,
+and enterprise software solutions.
+
+Headquarters:
+Bangalore, India
+
+CEO:
+Arjun Mehta
+
+Number of Employees:
+1200
+
+Products:
+- Nova Cloud Platform
+- Nova Analytics
+- AI Insight Engine
+
+Revenue:
+The company reported a revenue of $85 million in 2025.
+
+Mission:
+To help businesses accelerate digital transformation through
+innovative software solutions.

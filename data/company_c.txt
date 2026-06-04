@@ -1,0 +1,24 @@
+Company C: HealthSync Technologies
+
+HealthSync Technologies is a healthcare technology company founded in 2018.
+The company develops digital health platforms and AI-powered medical tools.
+
+Headquarters:
+Hyderabad, India
+
+CEO:
+Dr. Neha Kapoor
+
+Number of Employees:
+600
+
+Products:
+- HealthSync EHR
+- MedVision AI
+- CareConnect Platform
+
+Revenue:
+The company achieved a revenue of $62 million in 2025.
+
+Mission:
+To improve healthcare accessibility and patient outcomes through technology.
