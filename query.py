@@ -4,6 +4,8 @@ from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 import shutil
+import re
+
 DB_PATH = "db"
 
 EXPLAIN_KEYWORDS = [
@@ -102,6 +104,15 @@ def backup_file(file_path):
     )
     return backup_path
 
+def extract_file_name(question):
+    matches = re.findall(
+        r'[\w\-]+\.[a-zA-Z0-9]+',
+        question
+    )
+    if matches:
+        return matches[0]
+    return None
+
 embeddings = HuggingFaceEmbeddings(
     model_name = "BAAI/bge-m3"
 )
@@ -113,10 +124,34 @@ vector_store = Chroma(
 
 question = input("Ask your question: ")
 
-results = vector_store.similarity_search_with_score(
-    question,
-    k=5
-)
+target_filename = extract_file_name(question)
+if target_filename:
+    results = vector_store.similarity_search_with_score(
+        target_filename,
+        k=10
+    )
+    filename_matches = []
+    for doc, score in results:
+        if (
+            doc.metadata.get("filename", "").lower()
+            ==
+            target_filename.lower()
+        ):
+            filename_matches.append(
+                (doc, score)
+            )
+    if filename_matches:
+        results = filename_matches
+    else:
+        results = vector_store.similarity_search_with_score(
+            question,
+            k=5
+        )
+else:
+    results = vector_store.similarity_search_with_score(
+        question,
+        k=5
+    )
 
 is_show_file = contains_keyword(question,SHOW_KEYWORDS)
 is_explain = contains_keyword(question,EXPLAIN_KEYWORDS)

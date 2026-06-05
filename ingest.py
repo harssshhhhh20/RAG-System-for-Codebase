@@ -17,23 +17,45 @@ for root, dirs, files in os.walk(DATA_PATH):
             if file.endswith(".pdf"):
                loader = PyPDFLoader(file_path)
                for doc in loader.load():
-                   doc.metadata["file_type"] = ".pdf"
-                   documents.append(doc)
-            elif file.endswith((".txt",".py",".md")):
+                    doc.metadata["file_type"] = ".pdf"
+                    doc.metadata["filename"] = file
+                    doc.metadata["relative_path"] = os.path.relpath(
+                        file_path,
+                        DATA_PATH
+                    )
+                    documents.append(doc)
+            elif file.endswith((
+                    ".txt",
+                    ".py",
+                    ".md",
+                    ".java",
+                    ".js",
+                    ".ts",
+                    ".html",
+                    ".css",
+                    ".json",
+                    ".yaml",
+                    ".yml"
+                )):
                 loader = TextLoader(
                     file_path,
                     encoding= "utf-8"
                 )
                 for doc in loader.load():
                     doc.metadata["file_type"] = os.path.splitext(file)[1]
+                    doc.metadata["filename"] = file
+                    doc.metadata["relative_path"] = os.path.relpath(
+                        file_path,
+                        DATA_PATH
+                    )
                     documents.append(doc)
         except Exception as e:
             print(f"Skipped {file}: {e}")
 print(f"Loaded {len(documents)} documents")
 
 splitter = RecursiveCharacterTextSplitter(
-    chunk_size = 1000,
-    chunk_overlap = 200
+    chunk_size = 500,
+    chunk_overlap = 100
 )
 
 chunks = splitter.split_documents(documents)
