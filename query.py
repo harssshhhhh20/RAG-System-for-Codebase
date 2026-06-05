@@ -5,65 +5,9 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 import shutil
 import re
+import difflib
 
 DB_PATH = "db"
-
-EXPLAIN_KEYWORDS = [
-    "explain",
-    "describe",
-    "understand",
-    "walk through",
-    "what does",
-    "how does",
-    "purpose",
-    "analyze",
-    "breakdown"
-]
-SUMMARY_KEYWORDS = [
-    "summarize",
-    "summary",
-    "overview",
-    "brief",
-    "short explanation"
-]
-SHOW_KEYWORDS = [
-    "show",
-    "open",
-    "display",
-    "read"
-]
-REVIEW_KEYWORDS = [
-    "review",
-    "inspect",
-    "evaluate",
-    "check code",
-    "audit"
-]
-IMPROVE_KEYWORDS = [
-    "improve",
-    "optimize",
-    "refactor",
-    "enhance",
-    "clean up"
-]
-BUG_KEYWORDS = [
-    "bug",
-    "error",
-    "issue",
-    "problem",
-    "debug",
-    "fix"
-]
-EDIT_KEYWORDS = [
-    "write",
-    "create",
-    "add",
-    "modify",
-    "edit",
-    "change",
-    "insert",
-    "implement"
-]
 
 def read_file(file_path):
     ext = os.path.splitext(file_path)[1].lower()
@@ -90,12 +34,6 @@ def write_file(file_path,content):
         print(e)
         return False
 
-def contains_keyword(question, keywords):
-    return any(
-        keyword in question.lower()
-        for keyword in keywords
-    )
-
 def backup_file(file_path):
     backup_path = file_path + ".bak"
     shutil.copy(
@@ -112,6 +50,16 @@ def extract_file_name(question):
     if matches:
         return matches[0]
     return None
+
+def show_changes(old_content, new_content):
+    diff = difflib.unified_diff(
+        old_content.splitlines(),
+        new_content.splitlines(),
+        fromfile="Original",
+        tofile="Modified",
+        lineterm=""
+    )
+    return "\n".join(diff)
 
 embeddings = HuggingFaceEmbeddings(
     model_name = "BAAI/bge-m3"
@@ -152,40 +100,89 @@ else:
         question,
         k=5
     )
-
-is_show_file = contains_keyword(question,SHOW_KEYWORDS)
-is_explain = contains_keyword(question,EXPLAIN_KEYWORDS)
-is_summary = contains_keyword(question,SUMMARY_KEYWORDS)
-is_review = contains_keyword(question,REVIEW_KEYWORDS)
-is_bug = contains_keyword(question,BUG_KEYWORDS)
-is_improve = contains_keyword(question,IMPROVE_KEYWORDS)
-is_edit = contains_keyword(question,EDIT_KEYWORDS)
-
-
-
-
-# print("\nRetrieved Documents:\n")
-
-# for i, (doc, score) in enumerate(results, start=1):
-#     print(f"\n--- Result {i} ---")
-#     print(f"Score: {score}")
-#     print(f"Source: {doc.metadata.get('source')}")
-#     print("\nChunk Preview:")
-#     print(doc.page_content[:300])
-
+if not results:
+    print("No relevant documents found.")
+    exit()
+top_doc = results[0][0]
+file_path = top_doc.metadata.get("source")
+print(f"\nSelected File: {file_path}")
+content = read_file(file_path)
 
 context = "\n\n".join([doc.page_content for doc,score in results])
-
 
 llm = ChatOllama(
     model="qwen3:4b",
     temperature=0
 )
 
-if is_edit:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+def check_intent(question,llm):
+    prompt = f"""
+    You are an intent classifier.
+
+    Return ONLY one of these labels:
+
+    explain
+    summary
+    show
+    review
+    bug
+    improve
+    edit
+    qa
+
+    Examples:
+
+    "Explain query.py"
+    explain
+
+    "Summarize auth.py"
+    summary
+
+    "Show query.py"
+    show
+
+    "Review this code"
+    review
+
+    "Find bugs in auth.py"
+    bug
+
+    "Improve query.py"
+    improve
+
+    "Add logging to query.py"
+    edit
+
+    "What does the retrieval system do?"
+    qa
+
+    Question:
+    {question}
+    """
+    response = llm.invoke(prompt)
+    intent = response.content.lower().strip()
+
+    if not intent:
+        return "qa"
+
+    return intent.split()[0]
+
+intent = check_intent(question,llm)
+VALID_INTENTS = {
+    "edit",
+    "show",
+    "review",
+    "summary",
+    "bug",
+    "improve",
+    "explain",
+    "qa"
+}
+
+if intent not in VALID_INTENTS:
+    intent = "qa"
+
+if intent=="edit":
     file_extension = os.path.splitext(file_path)[1]
     prompt = f"""
     You are a senior software engineer.
@@ -205,7 +202,8 @@ if is_edit:
     new_code = response.content
     print("\nProposed Changes:\n")
     print("=" * 80)
-    print(new_code[:3000])
+    diff_text = show_changes(content,new_code)
+    print(diff_text)
     choice = input("\nApply Changes(y/n)")
     if choice.lower()=="y":
         backup_path = backup_file(file_path)
@@ -221,19 +219,13 @@ if is_edit:
             print("File update failed")
     else:
         print("Changes Discarded")
-elif is_show_file:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+elif intent=="show":
     print(f"\nFile: {file_path}")
     print("\n" + "=" * 80)
     print(content)
 
     exit()
-elif is_explain:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+elif intent=="explain":
     prompt = f"""
     You are a senior software engineer.
 
@@ -258,10 +250,7 @@ elif is_explain:
     print(response.content)
 
     exit()
-elif is_bug:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+elif intent=="bug":
     prompt = f"""
     You are a senior software engineer performing a code review.
 
@@ -288,10 +277,7 @@ elif is_bug:
     print(response.content)
 
     exit()
-elif is_improve:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+elif intent=="improve":
     prompt = f"""
     You are a principal software engineer.
 
@@ -326,10 +312,7 @@ elif is_improve:
     print("\n" + "=" * 80)
     print(response.content)
     exit()
-elif is_review:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+elif intent=="review":
     prompt = f"""
     You are a senior software engineer performing a professional code review.
 
@@ -364,10 +347,7 @@ elif is_review:
     print("\n" + "=" * 80)
     print(response.content)
     exit()
-elif is_summary:
-    top_doc = results[0][0]
-    file_path = top_doc.metadata.get("source")
-    content = read_file(file_path)
+elif intent=="summary":
     prompt = f"""
     You are an expert software engineer.
 
