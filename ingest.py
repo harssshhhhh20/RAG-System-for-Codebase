@@ -1,4 +1,4 @@
-import os
+import os, json
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -9,10 +9,12 @@ DATA_PATH = "data"
 DB_PATH = "db"
 
 documents = []
+filename_index = {}
 
 for root, dirs, files in os.walk(DATA_PATH):
     for file in files:
         file_path = os.path.join(root, file)
+        filename_index[file.lower()] = file_path
         try:
             if file.endswith(".pdf"):
                loader = PyPDFLoader(file_path)
@@ -74,3 +76,13 @@ vectore_store = Chroma.from_documents(
 )
 
 print(f"Created VectorDB successfully")
+with open(
+    "filename_index.json",
+    "w"
+) as f:
+    json.dump(
+        filename_index,
+        f,
+        indent=4
+    )
+print("json file created successfully")

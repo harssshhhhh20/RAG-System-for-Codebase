@@ -1,11 +1,8 @@
-import os
+import os, sys, subprocess, shutil, re, difflib, json
 from langchain_ollama import ChatOllama
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
-import shutil
-import re
-import difflib
 
 DB_PATH = "db"
 
@@ -61,6 +58,38 @@ def show_changes(old_content, new_content):
     )
     return "\n".join(diff)
 
+def run_file(exec_file):
+    ext = os.path.splitext(exec_file)[1].lower()
+    commands = {
+        ".py": [sys.executable, exec_file],
+        ".js": ["node", exec_file],
+        ".java": ["java", exec_file]
+    }
+    if ext not in commands:
+        return (
+            False,
+            f"Execution not supported for {ext}"
+        )
+    try:
+        result = subprocess.run(
+            commands[ext],
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        output = result.stdout
+        error = result.stderr
+        return(
+            result.returncode==0,
+            output if output else error
+        )
+    except Exception as e:
+        return(
+            False,
+            str(e)
+        )
+
+
 embeddings = HuggingFaceEmbeddings(
     model_name = "BAAI/bge-m3"
 )
@@ -70,10 +99,34 @@ vector_store = Chroma(
     embedding_function=embeddings
 )
 
+with open(
+    "filename_index.json",
+    "r"
+) as f:
+    filename_index = json.load(f)
+
 question = input("Ask your question: ")
 
+file_selected_by_index = False
+
 target_filename = extract_file_name(question)
-if target_filename:
+if (
+    target_filename and
+    target_filename.lower()
+    in filename_index
+):
+    file_selected_by_index = True
+    file_path = filename_index[
+        target_filename.lower()
+    ]
+    print(
+        f"\nSelected File: {file_path}"
+    )
+    content = read_file(file_path)
+    context = content
+if file_selected_by_index:
+     results = []
+elif target_filename:
     results = vector_store.similarity_search_with_score(
         target_filename,
         k=10
@@ -100,15 +153,25 @@ else:
         question,
         k=5
     )
-if not results:
-    print("No relevant documents found.")
-    exit()
-top_doc = results[0][0]
-file_path = top_doc.metadata.get("source")
-print(f"\nSelected File: {file_path}")
-content = read_file(file_path)
+if not file_selected_by_index:
 
-context = "\n\n".join([doc.page_content for doc,score in results])
+    if not results:
+        print("No relevant documents found.")
+        exit()
+
+    top_doc = results[0][0]
+
+    file_path = top_doc.metadata.get("source")
+
+    print(f"\nSelected File: {file_path}")
+
+    content = read_file(file_path)
+
+if not file_selected_by_index:
+    context = "\n\n".join(
+        doc.page_content
+        for doc, score in results
+    )
 
 llm = ChatOllama(
     model="qwen3:4b",
@@ -125,6 +188,7 @@ def check_intent(question,llm):
     summary
     show
     review
+    run
     bug
     improve
     edit
@@ -146,6 +210,9 @@ def check_intent(question,llm):
 
     "Find bugs in auth.py"
     bug
+
+    "Run hello.py"
+    run
 
     "Improve query.py"
     improve
@@ -174,6 +241,7 @@ VALID_INTENTS = {
     "review",
     "summary",
     "bug",
+    "run",
     "improve",
     "explain",
     "qa"
@@ -186,23 +254,44 @@ if intent=="edit":
     file_extension = os.path.splitext(file_path)[1]
     prompt = f"""
     You are a senior software engineer.
-    The file being modified is:
-    {os.path.basename(file_path)}
-    File Extension:
-    {file_extension}
-    Maintain the same programming language,
-    coding style, and project conventions.
-    Return ONLY the complete updated file.
+
+    Task:
+    Modify the file according to the user's request.
+
+    Rules:
+
+    1. Preserve all existing functionality unless explicitly asked to change it.
+    2. Make the smallest possible change that satisfies the request.
+    3. Do not remove unrelated code.
+    4. Do not rewrite the entire file unnecessarily.
+    5. Maintain the same language and coding style.
+    6. Return ONLY the complete updated file.
+    7. Do not include explanations.
+    8. Do not wrap the response in markdown fences.
+
     User Request:
     {question}
+
     Current Code:
     {content}
     """
     response = llm.invoke(prompt)
-    new_code = response.content
+    new_code = response.content.strip()
+    if new_code.startswith("```"):
+        lines = new_code.splitlines()
+
+        lines = lines[1:]
+
+        if lines and lines[-1].startswith("```"):
+            lines = lines[:-1]
+
+        new_code = "\n".join(lines)
     print("\nProposed Changes:\n")
     print("=" * 80)
     diff_text = show_changes(content,new_code)
+    if not diff_text.strip():
+        print("\nNo changes detected.")
+        exit()
     print(diff_text)
     choice = input("\nApply Changes(y/n)")
     if choice.lower()=="y":
@@ -278,40 +367,67 @@ elif intent=="bug":
 
     exit()
 elif intent=="improve":
+    file_extension = os.path.splitext(file_path)[1]
     prompt = f"""
-    You are a principal software engineer.
+        You are a principal software engineer.
 
-    Your task is to improve this code.
+        Your task is to improve the code while preserving its behavior.
 
-    Analyze the file and suggest:
+        Rules:
 
-    1. Better design patterns
-    2. Cleaner architecture
-    3. Improved readability
-    4. Better error handling
-    5. Better maintainability
-    6. Performance optimizations
-    7. Scalability improvements
-    8. Python best practices
+        1. Preserve functionality.
+        2. Improve readability.
+        3. Improve maintainability.
+        4. Improve error handling.
+        5. Remove obvious bugs.
+        6. Avoid unnecessary rewrites.
+        7. Keep the same external behavior.
+        8. Return ONLY the updated file.
+        9. No explanations.
+        10. No markdown fences.
 
-    For each improvement provide:
-
-    - Current issue
-    - Why it should be improved
-    - Exact code replacement if possible
-
-    Prioritize practical improvements over theoretical ones.
-
-    File Name:
-    {os.path.basename(file_path)}
-
-    Code:
-    {content}
+        Current Code:
+        {content}
     """
     response = llm.invoke(prompt)
-    print("\n" + "=" * 80)
-    print(response.content)
-    exit()
+    new_code = response.content.strip()
+    if new_code.startswith("```"):
+        lines = new_code.splitlines()  
+        lines = lines[1:]
+        if lines and lines[-1].startswith("```"):
+            lines = lines[:-1]
+            new_code = "\n".join(lines)
+    print("\nProposed Changes:\n")
+    print("=" * 80)
+    diff_text = show_changes(content,new_code)
+    if not diff_text.strip():
+        print("\nNo changes detected.")
+        exit()
+    print(diff_text)
+    choice = input("\nApply Changes(y/n): ")
+    if choice.lower()=="y":
+        backup_path = backup_file(file_path)
+    
+        success = write_file(file_path, new_code)
+    
+        if success:
+            print(f"Backup created: {backup_path}")
+            print("File updated successfully")
+            want_to_run = input("You want to test the file(y/n): ")
+            if want_to_run.lower() == "y":
+                run_success,result = run_file(file_path)
+                print("Output:")
+                print("="*80)
+                print(result)
+                exit()
+            else:
+                print("Changes made but user declined the test run")
+        else:
+            if os.path.exists(backup_path):
+                os.remove(backup_path)
+            print("File update failed")
+    else:
+        print("Changes Discarded")
 elif intent=="review":
     prompt = f"""
     You are a senior software engineer performing a professional code review.
@@ -372,6 +488,15 @@ elif intent=="summary":
     response = llm.invoke(prompt)
     print("\n" + "=" * 80)
     print(response.content)
+    exit()
+elif intent == "run" :
+    success,result = run_file(file_path)
+    print("Output Expected:")
+    print("="*80)
+    if success:
+        print(result)
+    else:
+        print(f"Error in excecution:\n{result}")
     exit()
 else:
     prompt = f"""
