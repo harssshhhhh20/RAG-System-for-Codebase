@@ -34,3 +34,50 @@ def get_memory(key):
         key,
         None
     )
+def process_memory_request(command):
+    command = command.lower().strip()
+    if command.startswith("remember"):
+        text = command[8:].strip()
+        if " is " not in text:
+            print("Use format: remember my key is value")
+            return
+        key,value = text.split(
+            " is ",
+            1
+        )
+        remember(key.strip(),value.strip())
+        print(f"Remembered {key} = {value}")
+    elif command.lower().startswith("what is"):
+
+        key = command[7:].strip()
+
+        value = get_memory(key)
+
+        if value:
+            print(
+                f"{key}: {value}"
+            )
+        else:
+            print(
+                "No memory found."
+            )
+
+    elif command.lower().startswith("forget"):
+
+        key = command[6:].strip()
+
+        if erase_memory(key):
+            print(
+                f"Forgot: {key}"
+            )
+        else:
+            print(
+                "Memory not found."
+            )
+
+    else:
+
+        print(
+            "Unknown memory command."
+        )
+

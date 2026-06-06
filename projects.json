@@ -1,0 +1,10 @@
+{
+    "rag_agent": {
+        "path": "/users/harsh/desktop/rag_agent",
+        "status": "active"
+    },
+    "medical-agent": {
+        "path": "/users/harsh/desktop/medical-agent",
+        "status": "active"
+    }
+}

@@ -1,7 +1,5 @@
 from desktop_tools import *
 from langchain_ollama import ChatOllama
-from voice_agent import *
-from record_audio import *
 
 llm = ChatOllama(
       model="qwen3:4b",
@@ -64,12 +62,6 @@ def handle_open_commands(request):
     else:
         print("Unknown command")
 
-def main():
-      record_audio()
-      command = transcribe_audio()
-      print(command)
-      handle_open_commands(command)
-
-if __name__ == "__main__":
-      main()
+def process_automation(request):
+      handle_open_commands(request)
     
