@@ -1,10 +1,6 @@
-from langchain_ollama import ChatOllama
+from tasks import *
 
-llm = ChatOllama(
-    model="qwen3:4b",
-    temperature=0
+add_task(
+    "rag_agent",
+    "Create task system"
 )
-
-response = llm.invoke("Answer in one sentence: What is RAG?")
-
-print(response.content)

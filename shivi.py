@@ -3,6 +3,21 @@ from query import process_code_request
 from memory import process_memory_request
 from langchain_ollama import ChatOllama
 from projects import process_project_request
+from tasks import process_task_request
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+from planner import process_planner_request
+
+DB_PATH = "db"
+
+embeddings = HuggingFaceEmbeddings(
+    model_name = "BAAI/bge-m3"
+)
+
+vector_store = Chroma(
+    persist_directory=DB_PATH,
+    embedding_function=embeddings
+)
 
 llm = ChatOllama(
     model="qwen3:4b",
@@ -18,8 +33,10 @@ def classify_request(command):
     automation
     memory
     code
+    task
     qa
     project
+    planner
 
     Examples:
 
@@ -37,6 +54,27 @@ def classify_request(command):
 
     remember my favorite language is python
     memory
+
+    what should i work on today
+    planner
+
+    what should i do today
+    planner
+
+    what is my next task
+    planner
+
+    add task build planner to rag_agent
+    task
+
+    show tasks for rag_agent
+    task
+
+    complete task build planner in rag_agent
+    task
+
+    remove task build planner from rag_agent
+    task
 
     what is my favorite language
     memory
@@ -74,6 +112,60 @@ def classify_request(command):
     what is rag
     qa
 
+    explain vector databases
+    qa
+
+    which file trains the model
+    qa
+
+    where is the lstm model trained
+    qa
+
+    which file trains the lstm model
+    qa
+
+    where is the model trained
+    qa
+
+    which file handles training
+    qa
+
+    where is the lstm model defined
+    qa
+
+    which file creates embeddings
+    qa
+
+    where is memory stored
+    qa
+
+    which file handles wake words
+    qa
+
+    which file contains the planner
+    qa
+
+    how does the task system work
+    qa
+
+    which file handles wake words
+    qa
+
+    where is memory stored
+    qa
+
+    which file creates embeddings
+    qa
+
+    how is the model trained
+    qa
+
+    how does the wake word system work
+    qa
+
+    what is retrieval augmented generation
+    qa
+
     Request:
     {command}
     """
@@ -81,22 +173,62 @@ def classify_request(command):
     intent = response.content.strip().lower()
     return intent
 
+def answer_qa(question):
+
+    results = vector_store.similarity_search_with_score(
+        question,
+        k=5
+    )
+    if not results:
+        print("I couldn't find anything relevant")
+        return
+    
+    context = "\n\n".join(
+        doc.page_content
+        for doc, score in results
+    )
+
+    prompt = f"""
+        You are SHIVI's knowledge assistant.
+
+        Your job is to answer questions using ONLY the provided context.
+
+        Rules:
+
+        1. Use information from the context whenever possible.
+        2. If the context does not contain enough information, say:
+        "I couldn't find that information in my knowledge base."
+        3. Do not invent files, functions, projects, tasks, or features.
+        4. If the question is about code, explain it clearly and simply.
+        5. If multiple pieces of context are relevant, combine them into a coherent answer.
+        6. Keep answers concise but informative.
+
+        Context:
+        {context}
+
+        Question:
+        {question}
+
+        Answer:
+    """
+
+    response = llm.invoke(prompt)
+
+    print(response.content)
+
 def route_requests(request,intent):
     print(f"Intent: {intent}")
     if intent == "automation":
-
         process_automation(
             request
         )
 
     elif intent == "memory":
-
         process_memory_request(
             request
         )
 
     elif intent == "code":
-
         process_code_request(
             request
         )
@@ -104,19 +236,50 @@ def route_requests(request,intent):
     elif intent == "project":
         process_project_request(request)
 
-    else:
+    elif intent == "task":
+        process_task_request(request)
 
-        print(
-            "General QA module not implemented yet."
-        )
+    elif intent =="planner":
+        process_planner_request(request)
+
+    elif intent=="qa":
+        answer_qa(request)
+
+    else:
+        print(f"Unknown Intent: {intent}")
 
 def main():
-    print("SHIVI started")
+    print(r"""
+    ███████╗██╗  ██╗██╗██╗   ██╗██╗
+    ██╔════╝██║  ██║██║██║   ██║██║
+    ███████╗███████║██║██║   ██║██║
+    ╚════██║██╔══██║██║╚██╗ ██╔╝██║
+    ███████║██║  ██║██║ ╚████╔╝ ██║
+    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝  ╚═╝
+
+    Smart Hybrid Interface for Voice & Intelligence
+    """)
+    print("🙂 SHIVI Online")
     print("Type 'exit' to quit")
     while True:
-        request = input("SHIVI > ")
+        request = input("SHIVI >>> ")
         if request.lower() in ["exit","quit"]:
-            print("\nGoodBye")
+            print(r"""
+            ██████╗  ██████╗  ██████╗ ██████╗
+            ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗
+            ██║  ███╗██║   ██║██║   ██║██║  ██║
+            ██║   ██║██║   ██║██║   ██║██║  ██║
+            ╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝
+            ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝
+
+            ██████╗ ██╗   ██╗███████╗
+            ██╔══██╗╚██╗ ██╔╝██╔════╝
+            ██████╔╝ ╚████╔╝ █████╗
+            ██╔══██╗  ╚██╔╝  ██╔══╝
+            ██████╔╝   ██║   ███████╗
+            ╚═════╝    ╚═╝   ╚══════╝
+            """)
+            print("😴 SHIVI Going To Sleep...")
             break
         intent = classify_request(request)
         route_requests(request,intent)

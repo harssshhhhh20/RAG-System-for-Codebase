@@ -2,6 +2,16 @@ import json, os, subprocess
 
 PROJECTS_FILE = "projects.json"
 
+def normalize_project_name(name):
+
+    return (
+        name
+        .strip()
+        .lower()
+        .replace("-", "_")
+        .replace(" ", "_")
+    )
+
 def load_projects():
 
     if not os.path.exists(PROJECTS_FILE):
@@ -41,8 +51,9 @@ def add_project(path):
         print("Path does not exist.")
         return False
 
-    name = os.path.basename(path)
-
+    name = normalize_project_name(
+        os.path.basename(path)
+    )
     projects = load_projects()
 
     projects[name] = {
@@ -75,6 +86,7 @@ def remove_project(name):
 
 def get_project(name):
 
+    name = normalize_project_name(name)
     projects = load_projects()
 
     return projects.get(

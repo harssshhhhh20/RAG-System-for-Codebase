@@ -193,7 +193,6 @@ def process_code_request(question):
         bug
         improve
         edit
-        qa
 
         Examples:
 
@@ -221,9 +220,6 @@ def process_code_request(question):
         "Add logging to query.py"
         edit
 
-        "What does the retrieval system do?"
-        qa
-
         Question:
         {question}
         """
@@ -231,7 +227,7 @@ def process_code_request(question):
         intent = response.content.lower().strip()
 
         if not intent:
-            return "qa"
+            return "review"
 
         return intent.split()[0]
 
@@ -245,11 +241,10 @@ def process_code_request(question):
         "run",
         "improve",
         "explain",
-        "qa"
     }
 
     if intent not in VALID_INTENTS:
-        intent = "qa"
+        intent = "review"
 
     if intent=="edit":
         file_extension = os.path.splitext(file_path)[1]
@@ -498,33 +493,6 @@ def process_code_request(question):
             print(result)
         else:
             print(f"Error in excecution:\n{result}")
-        return
-    else:
-        prompt = f"""
-        You are a helpful AI assistant.
-
-        Answer the user's question using the provided context.
-
-        Rules:
-        1. Base your answer primarily on the retrieved context.
-        2. You may make reasonable inferences when they are clearly supported by the context.
-        3. If the context contains code, you may explain what the code does and infer its purpose from the implementation.
-        4. If the answer cannot be determined from the provided context, respond exactly with:
-        "I don't know based on the provided documents."
-        5. Do not invent facts that are not supported by the context.
-
-        Context:
-        {context}
-
-        Question:
-        {question}
-        """
-
-        response = llm.invoke(prompt)
-
-        print("\n" + "="*70)
-        print("Answer: ")
-        print(response.content)
         return
 
 if __name__ == "__main__":

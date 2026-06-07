@@ -1,0 +1,14 @@
+{
+    "rag_agent": [
+        {
+            "task": "create live transcription",
+            "status": "todo"
+        }
+    ],
+    "sign_transformer": [
+        {
+            "task": "mark accuracy",
+            "status": "todo"
+        }
+    ]
+}

@@ -6,5 +6,9 @@
     "medical-agent": {
         "path": "/users/harsh/desktop/medical-agent",
         "status": "active"
+    },
+    "sign_transformer": {
+        "path": "/users/harsh/desktop/sign_transformer",
+        "status": "active"
     }
 }
