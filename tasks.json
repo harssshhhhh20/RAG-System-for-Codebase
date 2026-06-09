@@ -2,7 +2,7 @@
     "rag_agent": [
         {
             "task": "create live transcription",
-            "status": "todo"
+            "status": "done"
         }
     ],
     "sign_transformer": [

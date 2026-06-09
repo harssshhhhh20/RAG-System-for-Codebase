@@ -1,5 +1,5 @@
 from automation_agent import process_automation
-from query import process_code_request
+from query import process_code_request, extract_file_name, read_file
 from memory import process_memory_request
 from langchain_ollama import ChatOllama
 from projects import process_project_request
@@ -7,7 +7,8 @@ from tasks import process_task_request
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from planner import process_planner_request
-
+from normalizer import normalize_request
+import json
 DB_PATH = "db"
 
 embeddings = HuggingFaceEmbeddings(
@@ -173,48 +174,144 @@ def classify_request(command):
     intent = response.content.strip().lower()
     return intent
 
+with open("filename_index.json","r",encoding="utf-8") as f:
+    filename_index = json.load(f)
+
 def answer_qa(question):
-
-    results = vector_store.similarity_search_with_score(
-        question,
-        k=5
-    )
-    if not results:
-        print("I couldn't find anything relevant")
-        return
-    
-    context = "\n\n".join(
-        doc.page_content
-        for doc, score in results
+    target_filename = extract_file_name(
+        question
     )
 
-    prompt = f"""
-        You are SHIVI's knowledge assistant.
+    question_lower = question.lower()
 
-        Your job is to answer questions using ONLY the provided context.
+    if (
+        target_filename
+        and
+        target_filename.lower()
+        in filename_index
+    ):
+        file_path = filename_index[
+            target_filename.lower()
+        ]
 
-        Rules:
+        print(
+            f"\nSelected File: {file_path}"
+        )
 
-        1. Use information from the context whenever possible.
-        2. If the context does not contain enough information, say:
-        "I couldn't find that information in my knowledge base."
-        3. Do not invent files, functions, projects, tasks, or features.
-        4. If the question is about code, explain it clearly and simply.
-        5. If multiple pieces of context are relevant, combine them into a coherent answer.
-        6. Keep answers concise but informative.
+        content = read_file(
+            file_path
+        )
 
-        Context:
-        {context}
+        prompt = f"""
+        You are SHIVI's code assistant.
+
+        Explain this file clearly based on the question asked.
 
         Question:
         {question}
 
+        File:
+        {target_filename}
+
+        Code:
+        {content}
+
         Answer:
+        """
+
+        response = llm.invoke(
+            prompt
+        )
+
+        print(
+            response.content
+        )
+
+        return
+
+    results = (
+        vector_store
+        .similarity_search_with_score(
+            question,
+            k=5
+        )
+    )
+
+    if not results:
+        print(
+            "No relevant documents found."
+        )
+        return
+
+    FILE_LOCATION_PHRASES = [
+        "which file",
+        "where is",
+        "which module",
+        "which script"
+    ]
+
+    if any(
+        phrase in question_lower
+        for phrase in FILE_LOCATION_PHRASES
+    ):
+        best_doc, best_score = results[0]
+
+        return
+
+    print(
+        "\nRetrieved Documents:\n"
+    )
+
+    context_parts = []
+
+    for doc, score in results:
+
+        source = doc.metadata.get(
+            "source",
+            "unknown"
+        )
+
+        context_parts.append(
+            f"""
+        FILE:
+        {source}
+
+        CONTENT:
+        {doc.page_content}
+        """
+        )
+
+    context = "\n\n".join(
+        context_parts
+    )
+
+    prompt = f"""
+    You are SHIVI's knowledge assistant.
+
+    Your job is to answer questions using ONLY the provided context.
+
+    Rules:
+
+    1. Use information from the context whenever possible.
+    2. Do not invent files, functions, projects, tasks, or features.
+    3. If the question is about code, explain it clearly and simply.
+    4. If multiple pieces of context are relevant, combine them into a coherent answer.
+    5. Keep answers concise but informative.
+
+    Context:
+    {context}
+
+    Question:
+    {question}
+
+    Answer:
     """
-
-    response = llm.invoke(prompt)
-
-    print(response.content)
+    response = llm.invoke(
+        prompt
+    )
+    print(
+        response.content
+    )
 
 def route_requests(request,intent):
     print(f"Intent: {intent}")
@@ -282,6 +379,14 @@ def main():
             print("😴 SHIVI Going To Sleep...")
             break
         intent = classify_request(request)
+        if intent in [
+            "task",
+            "project",
+            "memory",
+            "automation",
+            "planner"
+        ]:
+            request = normalize_request(request,intent)
         route_requests(request,intent)
 
 if __name__ == "__main__":
