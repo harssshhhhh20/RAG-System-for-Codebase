@@ -291,29 +291,22 @@ def process_task_request(command):
         )
 
         if " in " not in text:
-
             print(
                 "Use: complete task <task> in <project>"
             )
-
             return
-
         task_name, project = text.rsplit(
             " in ",
             1
         )
-
         complete_task(
             project.strip(),
             task_name.strip()
         )
-
         return
-
     if command.startswith(
         "remove task "
     ):
-
         text = (
             command
             .replace(
@@ -322,7 +315,6 @@ def process_task_request(command):
             )
             .strip()
         )
-
         if " from " not in text:
 
             print(

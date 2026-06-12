@@ -1,46 +1,46 @@
 from desktop_tools import *
 from langchain_ollama import ChatOllama
 
-llm = ChatOllama(
-      model="qwen3:4b",
-      temperature=0
-)
+# llm = ChatOllama(
+#       model="qwen3:4b",
+#       temperature=0
+# )
 
-def intent_routing(command):
-      prompt = f"""
-        Return ONLY one of:
-        vscode
-        chrome
-        youtube
-        safari
-        whatsapp
-        netmirror
-        unknown
+# def intent_routing(command):
+#       prompt = f"""
+#         Return ONLY one of:
+#         vscode
+#         chrome
+#         youtube
+#         safari
+#         whatsapp
+#         netmirror
+#         unknown
 
-        Examples:
+#         Examples:
 
-        open vscode
-        vscode
+#         open vscode
+#         vscode
 
-        launch visual studio code
-        vscode
+#         launch visual studio code
+#         vscode
 
-        open youtube
-        youtube
+#         open youtube
+#         youtube
 
-        open whatsapp
-        whatsapp
+#         open whatsapp
+#         whatsapp
 
-        Command:
-        {command}
-        """
-      response = llm.invoke(prompt)
-      return response.content.strip().lower()
+#         Command:
+#         {command}
+#         """
+#       response = llm.invoke(prompt)
+#       return response.content.strip().lower()
 
 
-def handle_open_commands(request):
-    command = intent_routing(request)
-    print(f"Intent: {command}")
+def handle_open_commands(command):
+#     command = intent_routing(request)
+#     print(f"Intent: {command}")
     if "vscode" in command:
         open_vscode()
         return

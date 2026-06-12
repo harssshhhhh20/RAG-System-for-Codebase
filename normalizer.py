@@ -1,4 +1,5 @@
 from langchain_ollama import ChatOllama
+import time
 
 llm = ChatOllama(
     model="qwen3:4b",
@@ -64,10 +65,11 @@ def normalize_request(request,intent):
 
     Output:
     """
-
+    start = time.time()
     response = llm.invoke(
         prompt
     )
+    print(f"Normalize time: {time.time()-start:.2f}s")
 
     return (
         response.content

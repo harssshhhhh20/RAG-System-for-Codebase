@@ -8,7 +8,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from planner import process_planner_request
 from normalizer import normalize_request
-import json
+import json, time
+
 DB_PATH = "db"
 
 embeddings = HuggingFaceEmbeddings(
@@ -25,12 +26,11 @@ llm = ChatOllama(
     temperature=0
 )
 
-def classify_request(command):
+def llm_request(command):
     prompt = f"""
-    Return ONLY one label.
+    Classify the request.
 
     Labels:
-
     automation
     memory
     code
@@ -39,138 +39,13 @@ def classify_request(command):
     project
     planner
 
-    Examples:
+    Request: {command}
 
-    open vscode
-    automation
-
-    open chrome
-    automation
-
-    open youtube
-    automation
-
-    open whatsapp
-    automation
-
-    remember my favorite language is python
-    memory
-
-    what should i work on today
-    planner
-
-    what should i do today
-    planner
-
-    what is my next task
-    planner
-
-    add task build planner to rag_agent
-    task
-
-    show tasks for rag_agent
-    task
-
-    complete task build planner in rag_agent
-    task
-
-    remove task build planner from rag_agent
-    task
-
-    what is my favorite language
-    memory
-
-    forget my favorite language
-    memory
-
-    show hello.py
-    code
-
-    explain query.py
-    code
-
-    review auth.py
-    code
-
-    improve hello.py
-    code
-
-    run hello.py
-    code
-
-    fix broken.py
-    code
-
-    add project /harsh/desktop/rag-agent
-    project
-
-    what project i am working on
-    project
-
-    what are the projects listed
-    project 
-
-    what is rag
-    qa
-
-    explain vector databases
-    qa
-
-    which file trains the model
-    qa
-
-    where is the lstm model trained
-    qa
-
-    which file trains the lstm model
-    qa
-
-    where is the model trained
-    qa
-
-    which file handles training
-    qa
-
-    where is the lstm model defined
-    qa
-
-    which file creates embeddings
-    qa
-
-    where is memory stored
-    qa
-
-    which file handles wake words
-    qa
-
-    which file contains the planner
-    qa
-
-    how does the task system work
-    qa
-
-    which file handles wake words
-    qa
-
-    where is memory stored
-    qa
-
-    which file creates embeddings
-    qa
-
-    how is the model trained
-    qa
-
-    how does the wake word system work
-    qa
-
-    what is retrieval augmented generation
-    qa
-
-    Request:
-    {command}
+    Answer with only one label.
     """
+    start = time.time()
     response = llm.invoke(prompt)
+    print(f"LLM Request time : {time.time()-start:.2f}s")
     intent = response.content.strip().lower()
     return intent
 
@@ -345,6 +220,61 @@ def route_requests(request,intent):
     else:
         print(f"Unknown Intent: {intent}")
 
+def classify_request(command):
+
+    command = command.lower()
+
+    if any(word in command for word in [
+        "open",
+        "launch",
+        "start"
+    ]):
+        return "automation"
+
+    TASK_COMMANDS = [
+    "add task",
+    "show tasks",
+    "remove task",
+    "complete task"
+    ]
+
+    if any(
+        command.startswith(x)
+        for x in TASK_COMMANDS
+    ):
+        return "task"
+
+    PROJECT_COMMANDS = [
+    "add project",
+    "show projects",
+    "list projects",
+    "remove project",
+    "delete project",
+    "what projects",
+    "which projects"
+    ]
+
+    if any(
+        command.startswith(x)
+        for x in PROJECT_COMMANDS
+    ):
+        return "project"
+
+    if any(word in command for word in [
+        "remember",
+        "forget"
+    ]):
+        return "memory"
+
+    if any(word in command for word in [
+        ".py",
+        "file",
+        "code"
+    ]):
+        return "code"
+
+    return llm_request(command)
+
 def main():
     print(r"""
     ███████╗██╗  ██╗██╗██╗   ██╗██╗
@@ -379,14 +309,14 @@ def main():
             print("😴 SHIVI Going To Sleep...")
             break
         intent = classify_request(request)
-        if intent in [
-            "task",
-            "project",
-            "memory",
-            "automation",
-            "planner"
-        ]:
-            request = normalize_request(request,intent)
+        # if intent in [
+        #     "task",
+        #     "project",
+        #     "memory",
+        #     "automation",
+        #     "planner"
+        # ]:
+        #     request = normalize_request(request,intent)
         route_requests(request,intent)
 
 if __name__ == "__main__":

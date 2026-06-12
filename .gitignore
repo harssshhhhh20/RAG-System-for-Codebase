@@ -15,3 +15,9 @@ rag/
 
 # Personal documents
 data/harsh_maurya_resume.pdf
+
+
+#voice agents
+wake_word.py
+voice_agent.py
+record_audio.py

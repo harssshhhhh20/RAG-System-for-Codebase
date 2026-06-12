@@ -156,7 +156,7 @@ def process_code_request(question):
     else:
         results = vector_store.similarity_search_with_score(
             question,
-            k=5
+            k=3
         )
     if not file_selected_by_index:
 
@@ -178,7 +178,6 @@ def process_code_request(question):
             for doc, score in results
         )
 
-
     def check_intent(question,llm):
         prompt = f"""
         You are an intent classifier.
@@ -193,8 +192,21 @@ def process_code_request(question):
         bug
         improve
         edit
+        locate
 
         Examples:
+
+        Which file trains the model?
+        locate
+
+        Where is the LSTM model trained?
+        locate
+
+        Which file contains the planner?
+        locate
+
+        Where is memory stored?
+        locate
 
         "Explain query.py"
         explain
@@ -232,6 +244,7 @@ def process_code_request(question):
         return intent.split()[0]
 
     intent = check_intent(question,llm)
+
     VALID_INTENTS = {
         "edit",
         "show",
@@ -239,6 +252,7 @@ def process_code_request(question):
         "summary",
         "bug",
         "run",
+        "locate",
         "improve",
         "explain",
     }
@@ -493,6 +507,14 @@ def process_code_request(question):
             print(result)
         else:
             print(f"Error in excecution:\n{result}")
+        return
+    elif intent == "locate":
+        top_doc = results[0][0]
+        file_path = top_doc.metadata.get(
+            "source",
+            "unknown"
+        )
+        print(f"\nFound in: {file_path}")
         return
 
 if __name__ == "__main__":

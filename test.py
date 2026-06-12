@@ -1,6 +1,7 @@
-from tasks import *
+from voice_agent import transcribe_stream
 
-add_task(
-    "rag_agent",
-    "Create task system"
-)
+for text in transcribe_stream():
+
+    print(
+        f"TEXT: {text}"
+    )
