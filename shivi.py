@@ -7,7 +7,6 @@ from tasks import process_task_request
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from planner import process_planner_request
-from normalizer import normalize_request
 import json, time
 
 DB_PATH = "db"
@@ -132,10 +131,6 @@ def answer_qa(question):
         best_doc, best_score = results[0]
 
         return
-
-    print(
-        "\nRetrieved Documents:\n"
-    )
 
     context_parts = []
 
