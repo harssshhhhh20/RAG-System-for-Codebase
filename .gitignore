@@ -1,33 +1,24 @@
-# Vector DB
-db/
-
 # Python
 __pycache__/
 *.pyc
 
 # Virtual environments
 venv/
+.venv/
 rag/
-.env/
 
-# macOS
-.DS_Store
-
-# Personal documents
-data/
-
-
-#voice agents
-wake_word.py
-voice_agent.py
-record_audio.py
-
+# Build artifacts
 build/
 dist/
 *.egg-info/
 
-__pycache__/
-*.pyc
-
+# Generated data
+db/
 data/
 storage/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
