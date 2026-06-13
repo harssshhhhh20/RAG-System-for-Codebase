@@ -1,15 +1,17 @@
-from automation_agent import process_automation
-from query import process_code_request, extract_file_name, read_file
-from memory import process_memory_request
+
+from shivi.automation_agent import process_automation
+from shivi.query import process_code_request, extract_file_name, read_file
+from shivi.memory import process_memory_request
 from langchain_ollama import ChatOllama
-from projects import process_project_request
-from tasks import process_task_request
+from shivi.projects import process_project_request
+from shivi.tasks import process_task_request
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from planner import process_planner_request
-import json, time
-
-DB_PATH = "db"
+from shivi.planner import process_planner_request
+from shivi.ingest import ingest_data
+from shivi.source import process_source_request
+import json, time, subprocess, sys
+from shivi.config import DB_PATH, FILENAME_INDEX_FILE
 
 embeddings = HuggingFaceEmbeddings(
     model_name = "BAAI/bge-m3"
@@ -35,6 +37,8 @@ def llm_request(command):
     code
     task
     qa
+    source
+    ingest
     project
     planner
 
@@ -48,7 +52,7 @@ def llm_request(command):
     intent = response.content.strip().lower()
     return intent
 
-with open("filename_index.json","r",encoding="utf-8") as f:
+with open(FILENAME_INDEX_FILE,"r",encoding="utf-8") as f:
     filename_index = json.load(f)
 
 def answer_qa(question):
@@ -212,12 +216,47 @@ def route_requests(request,intent):
     elif intent=="qa":
         answer_qa(request)
 
+    elif intent == "ingest":
+        ingest_data()
+        global filename_index
+        global vector_store
+        with open(
+            FILENAME_INDEX_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
+            filename_index = json.load(f)
+        vector_store = Chroma(
+            persist_directory=DB_PATH,
+            embedding_function=embeddings
+        )
+        print("Knowledge base updated.")
+
+    elif intent == "source":
+        process_source_request(request)
+
     else:
         print(f"Unknown Intent: {intent}")
 
 def classify_request(command):
 
     command = command.lower()
+
+    QA_PREFIXES = [
+    "how",
+    "what",
+    "why",
+    "when",
+    "where",
+    "which",
+    "who"
+    ]
+
+    if any(
+        command.startswith(x)
+        for x in QA_PREFIXES
+    ):
+        return "qa"
 
     if any(word in command for word in [
         "open",
@@ -226,32 +265,35 @@ def classify_request(command):
     ]):
         return "automation"
 
-    TASK_COMMANDS = [
-    "add task",
-    "show tasks",
-    "remove task",
-    "complete task"
+    TASK_ACTIONS = [
+    "add",
+    "show",
+    "list",
+    "remove",
+    "delete",
+    "complete"
     ]
-
-    if any(
-        command.startswith(x)
-        for x in TASK_COMMANDS
+    if (
+        any(
+            command.startswith(action)
+            for action in TASK_ACTIONS
+        )
+        and
+        "task" in command
     ):
         return "task"
 
-    PROJECT_COMMANDS = [
-    "add project",
-    "show projects",
-    "list projects",
-    "remove project",
-    "delete project",
-    "what projects",
-    "which projects"
+    PROJECT_KEYWORDS = [
+    "project",
+    "projects"
     ]
 
-    if any(
-        command.startswith(x)
-        for x in PROJECT_COMMANDS
+    if (
+        command.startswith(("add", "show", "list", "remove", "delete"))
+        and any(
+            word in command
+            for word in PROJECT_KEYWORDS
+    )
     ):
         return "project"
 
@@ -261,16 +303,50 @@ def classify_request(command):
     ]):
         return "memory"
 
+    SOURCE_ACTIONS = [
+    "add source",
+    "remove source",
+    "show sources"
+    ]
+
+    if any(
+        command.startswith(action)
+        for action in SOURCE_ACTIONS
+    ):
+        return "source"
+
     if any(word in command for word in [
         ".py",
         "file",
         "code"
     ]):
         return "code"
+    
+    if command == "ingest":
+        return "ingest"
 
     return llm_request(command)
 
+def check_ollama():
+    try:
+        subprocess.run(
+            ["ollama", "list"],
+            capture_output=True,
+            check=True
+        )
+        return True
+    except Exception:
+        return False
+
 def main():
+    if not check_ollama():
+        print("\nOllama not found or not running.")
+        print("\nInstall Ollama:")
+        print("https://ollama.com")
+        print("\nThen run:")
+        print("ollama pull qwen3:4b")
+        return
+    
     print(r"""
     ███████╗██╗  ██╗██╗██╗   ██╗██╗
     ██╔════╝██║  ██║██║██║   ██║██║
@@ -281,8 +357,9 @@ def main():
 
     Smart Hybrid Interface for Voice & Intelligence
     """)
-    print("🙂 SHIVI Online")
-    print("Type 'exit' to quit")
+    print("🙂 SHIVI Online.")
+    print("Type 'exit' to quit.")
+    print("To ingest simply bash 'ingest'.")
     while True:
         request = input("SHIVI >>> ")
         if request.lower() in ["exit","quit"]:
@@ -304,14 +381,6 @@ def main():
             print("😴 SHIVI Going To Sleep...")
             break
         intent = classify_request(request)
-        # if intent in [
-        #     "task",
-        #     "project",
-        #     "memory",
-        #     "automation",
-        #     "planner"
-        # ]:
-        #     request = normalize_request(request,intent)
         route_requests(request,intent)
 
 if __name__ == "__main__":

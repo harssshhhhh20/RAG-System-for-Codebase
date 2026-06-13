@@ -1,6 +1,5 @@
 import json, os
-
-MEMORY_FILE="memory.json"
+from shivi.config import MEMORY_FILE
 
 def load_memory():
     if not os.path.exists(MEMORY_FILE):

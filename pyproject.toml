@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shivi-agent"
+version = "0.1.0"
+description = "Terminal AI Assistant"
+
+[project.scripts]
+shivi = "shivi.main:main"
+
+[tool.setuptools]
+packages = ["shivi"]

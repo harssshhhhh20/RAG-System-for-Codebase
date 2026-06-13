@@ -1,9 +1,0 @@
-{
-    "rag_agent": [],
-    "sign_transformer": [
-        {
-            "task": "mark accuracy",
-            "status": "todo"
-        }
-    ]
-}

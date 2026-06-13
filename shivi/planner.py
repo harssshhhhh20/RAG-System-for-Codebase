@@ -1,4 +1,4 @@
-from tasks import get_active_tasks
+from shivi.tasks import get_active_tasks
 
 def get_work_today():
     active_tasks = get_active_tasks()

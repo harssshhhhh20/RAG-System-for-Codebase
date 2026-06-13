@@ -3,8 +3,7 @@ from langchain_ollama import ChatOllama
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
-
-DB_PATH = "db"
+from shivi.config import DB_PATH, FILENAME_INDEX_FILE
 
 def read_file(file_path):
     ext = os.path.splitext(file_path)[1].lower()
@@ -104,17 +103,20 @@ llm = ChatOllama(
         temperature=0
     )
 
-with open(
-    "filename_index.json",
-    "r"
-) as f:
-    filename_index = json.load(f)
+def load_filename_index():
+    with open(
+        FILENAME_INDEX_FILE,
+        "r",
+        encoding="utf-8"
+    ) as f:
+        return json.load(f)
 
 def process_code_request(question):
 
     file_selected_by_index = False
-
+    filename_index = load_filename_index()
     target_filename = extract_file_name(question)
+    print(f"Extracted: {target_filename}")
     if (
         target_filename and
         target_filename.lower()
@@ -132,27 +134,8 @@ def process_code_request(question):
     if file_selected_by_index:
         results = []
     elif target_filename:
-        results = vector_store.similarity_search_with_score(
-            target_filename,
-            k=10
-        )
-        filename_matches = []
-        for doc, score in results:
-            if (
-                doc.metadata.get("filename", "").lower()
-                ==
-                target_filename.lower()
-            ):
-                filename_matches.append(
-                    (doc, score)
-                )
-        if filename_matches:
-            results = filename_matches
-        else:
-            results = vector_store.similarity_search_with_score(
-                question,
-                k=5
-            )
+        print("File Not Found")
+        return
     else:
         results = vector_store.similarity_search_with_score(
             question,
@@ -178,63 +161,24 @@ def process_code_request(question):
             for doc, score in results
         )
 
-    def check_intent(question,llm):
+    def llm_check_intent(question,llm):
         prompt = f"""
-        You are an intent classifier.
+            Return one label only:
 
-        Return ONLY one of these labels:
+            show
+            run
+            review
+            bug
+            improve
+            edit
+            rewrite
+            summary
+            explain
+            locate
 
-        explain
-        summary
-        show
-        review
-        run
-        bug
-        improve
-        edit
-        locate
-
-        Examples:
-
-        Which file trains the model?
-        locate
-
-        Where is the LSTM model trained?
-        locate
-
-        Which file contains the planner?
-        locate
-
-        Where is memory stored?
-        locate
-
-        "Explain query.py"
-        explain
-
-        "Summarize auth.py"
-        summary
-
-        "Show query.py"
-        show
-
-        "Review this code"
-        review
-
-        "Find bugs in auth.py"
-        bug
-
-        "Run hello.py"
-        run
-
-        "Improve query.py"
-        improve
-
-        "Add logging to query.py"
-        edit
-
-        Question:
-        {question}
-        """
+            Question:
+            {question}
+            """
         response = llm.invoke(prompt)
         intent = response.content.lower().strip()
 
@@ -243,10 +187,66 @@ def process_code_request(question):
 
         return intent.split()[0]
 
-    intent = check_intent(question,llm)
+    def check_intent(command):
+        command = command.lower().strip()
+
+        if command.startswith("show"):
+            return "show"
+
+        if command.startswith("run"):
+            return "run"
+
+        if command.startswith("review"):
+            return "review"
+
+        if command.startswith("summarize"):
+            return "summary"
+
+        if command.startswith("summary"):
+            return "summary"
+
+        if command.startswith("explain"):
+            return "explain"
+
+        if command.startswith("improve"):
+            return "improve"
+
+        if command.startswith("edit"):
+            return "edit"
+
+        if command.startswith("rewrite"):
+            return "rewrite"
+
+        if command.startswith("locate"):
+            return "locate"
+
+        if command.startswith("find bug"):
+            return "bug"
+
+        if command.startswith("find bugs"):
+            return "bug"
+
+        if command.startswith("bug"):
+            return "bug"
+        if command.startswith("which file"):
+            return "locate"
+
+        if command.startswith("where is"):
+            return "locate"
+
+        if command.startswith("which module"):
+            return "locate"
+
+        if command.startswith("which script"):
+            return "locate"
+        
+        return llm_check_intent(command,llm)
+    
+    intent = check_intent(question)
 
     VALID_INTENTS = {
         "edit",
+        "rewrite",
         "show",
         "review",
         "summary",
@@ -260,6 +260,65 @@ def process_code_request(question):
     if intent not in VALID_INTENTS:
         intent = "review"
 
+    if intent == "rewrite":
+
+        prompt = f"""
+        You are a senior software engineer.
+
+        Completely replace the file.
+
+        Rules:
+
+        1. Ignore the existing implementation.
+        2. Build a completely new file that satisfies the user's request.
+        3. Return ONLY the complete source code.
+        4. No explanations.
+        5. No markdown fences.
+
+        User Request:
+        {question}
+
+        Existing File:
+        {content}
+        """
+        response = llm.invoke(prompt)
+        new_code = response.content.strip()
+        if new_code.startswith("```"):
+            lines = new_code.splitlines()
+            if lines:
+                lines = lines[1:]
+            if lines and lines[-1].startswith("```"):
+                lines = lines[:-1]
+            new_code = "\n".join(lines)
+        print("\nProposed Changes:\n")
+        print("=" * 80)
+        diff_text = show_changes(
+            content,
+            new_code
+        )
+        if not diff_text.strip():
+            print("\nNo changes detected.")
+            return
+        print(diff_text)
+        choice = input("\nApply Changes(y/n): ")
+        if choice.lower() == "y":
+            backup_path = backup_file(
+                file_path
+            )
+            success = write_file(
+                file_path,
+                new_code
+            )
+            if success:
+                print(f"Backup created: {backup_path}")
+                print("File updated successfully")
+            else:
+                if os.path.exists(backup_path):
+                    os.remove(backup_path)
+                print("File update failed")
+        else:
+            print("Changes Discarded")
+        return
     if intent=="edit":
         file_extension = os.path.splitext(file_path)[1]
         prompt = f"""

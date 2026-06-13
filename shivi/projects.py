@@ -1,9 +1,8 @@
 import json, os, subprocess
 
-PROJECTS_FILE = "projects.json"
+from shivi.config import PROJECTS_FILE
 
 def normalize_project_name(name):
-
     return (
         name
         .strip()
@@ -185,6 +184,39 @@ def process_project_request(command):
         add_project(
             project_path
         )
+
+        return
+
+    if command in [
+    "what projects am i working on",
+    "show projects",
+    "list projects",
+    "what projects are listed",
+    "which projects are listed"
+    ]:
+        list_projects()
+        return
+
+    if command.startswith("show project "):
+        project_name = command.replace(
+            "show project ",
+            ""
+        ).strip()
+
+        project = get_project(
+            project_name
+        )
+
+        if project:
+            print(
+                f"\nName: {project_name}"
+            )
+            print(
+                f"Path: {project['path']}"
+            )
+            print(
+                f"Status: {project['status']}"
+            )
 
         return
 

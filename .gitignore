@@ -21,3 +21,13 @@ data/harsh_maurya_resume.pdf
 wake_word.py
 voice_agent.py
 record_audio.py
+
+build/
+dist/
+*.egg-info/
+
+__pycache__/
+*.pyc
+
+data/
+storage/

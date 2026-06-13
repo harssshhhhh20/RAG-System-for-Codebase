@@ -1,12 +1,12 @@
 import json
 import os
 
-from projects import (
+from shivi.projects import (
     normalize_project_name,
     get_project
 )
 
-TASKS_FILE = "tasks.json"
+from shivi.config import TASKS_FILE
 
 def load_tasks():
 
