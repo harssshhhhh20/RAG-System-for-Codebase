@@ -5,8 +5,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from shivi.source import load_sources
+from shivi.config import DB_PATH, FILENAME_INDEX_FILE
 
-DB_PATH = "db"
 SUPPORTED_TEXT_FILES = (
     ".txt",
     ".py",
@@ -21,6 +21,19 @@ SUPPORTED_TEXT_FILES = (
     ".yml"
 )
 
+IGNORE_DIRS = {
+    ".git",
+    "__pycache__",
+    ".vscode",
+    "build",
+    "dist",
+    ".pytest_cache"
+}
+
+IGNORE_FILES = {
+    ".DS_Store"
+}
+
 def ingest_data():
     sources = load_sources()
     if not sources:
@@ -29,6 +42,10 @@ def ingest_data():
 
     documents = []
     filename_index = {}
+
+    print("\nSources Being Ingested:\n")
+    for source in load_sources():
+        print(source)
 
     for source_path in sources:
         if not os.path.exists(source_path):
@@ -40,7 +57,15 @@ def ingest_data():
         else:
             files_to_process = []
             for root, dirs, files in os.walk(source_path):
+                dirs[:] = [
+                    d for d in dirs
+                    if d not in IGNORE_DIRS
+                ]
                 for file in files:
+                    if file in IGNORE_FILES:
+                        continue
+                    if file.startswith("."):
+                        continue
                     files_to_process.append(
                         os.path.join(root, file)
                     )
@@ -104,7 +129,7 @@ def ingest_data():
     )
     print("Created VectorDB successfully")
     with open(
-        "storage/filename_index.json",
+        FILENAME_INDEX_FILE,
         "w",
         encoding="utf-8"
     ) as f:

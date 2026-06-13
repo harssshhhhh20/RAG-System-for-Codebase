@@ -41,43 +41,23 @@ def save_tasks(tasks):
             indent=4
         )
 
-def add_task(
-    project,
-    task
-):
-
-    project = normalize_project_name(
-        project
-    )
-
+def add_task(project,task):
+    project = normalize_project_name(project)
     if not get_project(project):
-
-        print(
-            "Project does not exist."
-        )
-
+        print("Project does not exist.")
         return
-
     tasks = load_tasks()
-
     if project not in tasks:
         tasks[project] = []
-
     for existing_task in tasks[project]:
-
         if (
             existing_task["task"]
             .lower()
             ==
             task.lower()
         ):
-
-            print(
-                "Task already exists."
-            )
-
+            print("Task already exists.")
             return
-
     tasks[project].append(
         {
             "task": task,

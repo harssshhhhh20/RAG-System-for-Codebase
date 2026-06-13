@@ -6,6 +6,17 @@ build-backend = "setuptools.build_meta"
 name = "shivi-agent"
 version = "0.1.0"
 description = "Terminal AI Assistant"
+dependencies = [
+    "langchain",
+    "langchain-community",
+    "langchain-ollama",
+    "langchain-chroma",
+    "langchain-huggingface",
+    "langchain-text-splitters",
+    "chromadb",
+    "sentence-transformers",
+    "pypdf"
+]
 
 [project.scripts]
 shivi = "shivi.main:main"

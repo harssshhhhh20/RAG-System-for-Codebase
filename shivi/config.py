@@ -17,14 +17,17 @@ PROJECTS_FILE = STORAGE_DIR / "projects.json"
 SOURCE_FILE = STORAGE_DIR / "source.json"
 FILENAME_INDEX_FILE = STORAGE_DIR / "filename_index.json"
 
-FILES = [
-    MEMORY_FILE,
-    TASKS_FILE,
-    PROJECTS_FILE,
-    SOURCE_FILE,
-    FILENAME_INDEX_FILE
-]
+DEFAULT_CONTENT = {
+    MEMORY_FILE: "{}",
+    TASKS_FILE: "{}",
+    PROJECTS_FILE: "{}",
+    SOURCE_FILE: "[]",
+    FILENAME_INDEX_FILE: "{}"
+}
 
-for file in FILES:
+for file, content in DEFAULT_CONTENT.items():
     if not file.exists():
-        file.write_text("{}")
+        file.write_text(
+            content,
+            encoding="utf-8"
+        )

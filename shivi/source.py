@@ -4,9 +4,16 @@ from shivi.config import SOURCE_FILE
 def load_sources():
     if not os.path.exists(SOURCE_FILE):
         return []
-    with open (SOURCE_FILE,"r",encoding="utf-8") as f:
+    with open(
+        SOURCE_FILE,
+        "r",
+        encoding="utf-8"
+    ) as f:
         try:
-            return json.load(f)
+            data = json.load(f)
+            if not isinstance(data,list):
+                return []
+            return data
         except json.JSONDecodeError:
             return []
 
@@ -27,6 +34,8 @@ def add_sources(path):
     if path in sources:
         print("Source already exists")
         return
+    print(type(sources))
+    print(sources)
     sources.append(path)
     save_sources(sources)
     print(f"Added - {path}")

@@ -1,140 +1,232 @@
-# 🔍 RAG System for Codebase
+# SHIVI
 
-A Retrieval-Augmented Generation (RAG) system that lets you query, understand, and edit your codebase using natural language. Built with LangChain, ChromaDB, and HuggingFace embeddings.
+### Your Local AI Developer Assistant
 
----
+SHIVI is a local AI-powered developer assistant that understands, edits, and manages entire codebases.
 
-## 🚀 What It Does
-
-- **Ingests** your codebase (Python, JS, TS, Java, HTML, CSS, Markdown, JSON, YAML, PDF, TXT) into a local vector database
-- **Understands** your queries using semantic search over embedded code chunks
-- **Routes** your intent automatically — explain, summarize, review, debug, or directly edit files
-- **Backs up** files before making any edits, so your code is always safe
+Instead of manually searching through files, SHIVI lets you ask questions, edit code, manage projects, and work with repositories using natural language — all while running completely locally.
 
 ---
 
-## 🧠 Tech Stack
+## Features
 
-| Component | Tool |
-|---|---|
-| Embeddings | `BAAI/bge-m3` via HuggingFace |
-| Vector Store | ChromaDB (local persistence) |
-| LLM Framework | LangChain |
-| Document Loaders | LangChain Community (TextLoader, PyPDFLoader) |
-| Text Splitting | RecursiveCharacterTextSplitter |
+### Codebase Understanding
+
+* Explain source files
+* Summarize modules
+* Review code quality
+* Locate files and functionality
+* Answer architecture questions
+
+### Code Editing
+
+* Edit files using natural language
+* Rewrite files completely
+* Preview changes with unified diffs
+* Automatic backup creation before modifications
+
+### RAG-Powered Search
+
+* Semantic search across repositories
+* Local vector database using ChromaDB
+* Context-aware answers grounded in your code
+
+### Source Management
+
+* Add repositories dynamically
+* Remove repositories
+* Ingest multiple codebases
+* Persistent source tracking
+
+### Project Management
+
+* Add projects
+* Track project status
+* Persistent project storage
+
+### Task Management
+
+* Add tasks
+* Complete tasks
+* Delete tasks
+* View active tasks
+
+### Memory System
+
+* Store notes and information
+* Persistent memory across sessions
+
+### Local First
+
+* Runs completely locally
+* Uses Ollama-hosted LLMs
+* No cloud dependency
 
 ---
 
-## 📁 Project Structure
+## Tech Stack
 
-```
-RAG-System-for-Codebase/
-├── data/               # Put your codebase/files here
-├── db/                 # Auto-generated ChromaDB vector store
-├── ingest.py           # Loads, chunks, and embeds documents into ChromaDB
-├── query.py            # Query the vector store with natural language
-├── test.py             # Test/utility scripts
-└── .gitignore
-```
+| Component           | Technology        |
+| ------------------- | ----------------- |
+| LLM                 | Ollama + Qwen     |
+| Framework           | LangChain         |
+| Embeddings          | BAAI/bge-m3       |
+| Vector Database     | ChromaDB          |
+| Document Processing | LangChain Loaders |
+| Language            | Python            |
 
 ---
 
-## ⚙️ Setup & Installation
+## Installation
 
-### 1. Clone the repository
+### Install Ollama
 
 ```bash
-git clone https://github.com/harssshhhhh20/RAG-System-for-Codebase.git
-cd RAG-System-for-Codebase
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-### 2. Create a virtual environment (recommended)
+Pull the model:
 
 ```bash
-python -m venv venv
-source venv/bin/activate        # On Windows: venv\Scripts\activate
+ollama pull qwen3:4b
 ```
 
-### 3. Install dependencies
+### Install SHIVI
 
 ```bash
-pip install langchain langchain-community langchain-huggingface langchain-chroma chromadb sentence-transformers pypdf
+pip install shivi-agent
 ```
 
-### 4. Add your codebase
-
-Place all the files you want to query inside the `data/` folder. Supported formats: `.py`, `.js`, `.ts`, `.java`, `.html`, `.css`, `.json`, `.yaml`, `.yml`, `.md`, `.txt`, `.pdf`
-
----
-
-## 🏃 Usage
-
-### Step 1 — Ingest your codebase
+Launch:
 
 ```bash
-python ingest.py
+shivi
 ```
-
-This will load all files from `data/`, split them into chunks, generate embeddings using `BAAI/bge-m3`, and persist everything to the local `db/` folder.
-
-**Output:**
-```
-Loaded 42 documents
-Created 310 chunks
-Created VectorDB successfully
-```
-
-### Step 2 — Query your codebase
-
-```bash
-python query.py
-```
-
-Then type a natural language query, for example:
-
-```
-> Explain how authentication works in this codebase
-> Summarize the main entry point
-> Debug the error in utils.py
-> Review the database connection logic
-```
-
-The system automatically detects your intent and responds accordingly.
 
 ---
 
-## 💡 Supported Query Types
+## Quick Start
 
-| Intent | Example Query |
-|---|---|
-| **Explain** | "Explain how the login function works" |
-| **Summarize** | "Summarize what this project does" |
-| **Review** | "Review the error handling in api.py" |
-| **Debug** | "Debug why the database query is failing" |
-| **Edit** | "Edit the config file to add a timeout" |
+### Add a Repository
+
+```text
+add source /Users/username/project
+```
+
+### Ingest Files
+
+```text
+ingest
+```
+
+### Ask Questions
+
+```text
+which file handles authentication?
+
+explain planner.py
+
+summarize query.py
+```
+
+### Edit Code
+
+```text
+add logging to query.py
+
+rewrite test.py as a calculator
+```
+
+### Manage Tasks
+
+```text
+add task Build authentication
+
+show tasks
+
+complete task 1
+```
+
+### Manage Projects
+
+```text
+add project SHIVI
+
+show projects
+```
 
 ---
 
-## 📝 Notes
+## Example Workflow
 
-- The `db/` folder is auto-created on first ingest — do not delete it between queries
-- Re-run `ingest.py` whenever you add new files to `data/`
-- Files are backed up automatically before any edits are made
-- First run will download the `BAAI/bge-m3` model (~1.1GB) — internet connection required
+```text
+add source /Users/username/my_project
 
----
+ingest
 
-## 🔮 Future Improvements
+which file handles authentication?
 
-- [ ] Add `requirements.txt` for one-command install
-- [ ] Modularize `query.py` into separate retriever/intent/prompt modules
-- [ ] Add a simple Streamlit or Gradio UI
-- [ ] Support incremental re-ingestion (only process changed files)
-- [ ] Improve intent detection with an LLM classifier
+explain auth.py
+
+add logging to auth.py
+```
 
 ---
 
-## 👨‍💻 Author
+## Architecture
 
-**Harsh** — 3rd Year CS Student  
-[GitHub](https://github.com/harssshhhhh20)
+```text
+User
+ ↓
+Intent Classification
+ ↓
+┌───────────────┬───────────────┐
+│ Command Tools │ RAG Retrieval │
+└───────────────┴───────────────┘
+ ↓
+Qwen (Ollama)
+ ↓
+Response / Code Changes
+```
+
+---
+
+## Roadmap
+
+### Completed
+
+* Codebase RAG
+* Semantic Search
+* Source Management
+* File Editing
+* Diff Viewer
+* Automatic Backups
+* Task Management
+* Project Management
+* Persistent Memory
+* CLI Packaging
+
+### In Progress
+
+* Terminal Command Execution
+
+### Planned
+
+* Multi-file Editing
+* Git Integration
+* Automatic Error Fix Loops
+* Agent Workflows
+
+---
+
+## Author
+
+Harsh Maurya
+
+Built while exploring Retrieval-Augmented Generation, local LLMs, and AI-powered developer tools.
+
+---
+
+### SHIVI
+
+Your Local AI Developer Assistant.
