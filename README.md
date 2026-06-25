@@ -230,3 +230,6 @@ Built while exploring Retrieval-Augmented Generation, local LLMs, and AI-powered
 ### SHIVI
 
 Your Local AI Developer Assistant.
+
+
+final testing
