@@ -232,3 +232,4 @@ Built while exploring Retrieval-Augmented Generation, local LLMs, and AI-powered
 Your Local AI Developer Assistant.
 
 no dlq
+new error
