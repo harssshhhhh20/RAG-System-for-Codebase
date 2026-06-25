@@ -234,3 +234,4 @@ Your Local AI Developer Assistant.
 no dlq
 new error
 new dlq
+prometheus
