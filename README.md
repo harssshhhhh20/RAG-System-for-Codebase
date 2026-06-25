@@ -232,4 +232,4 @@ Built while exploring Retrieval-Augmented Generation, local LLMs, and AI-powered
 Your Local AI Developer Assistant.
 
 
-final test
+final testing
