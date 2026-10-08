@@ -137,22 +137,40 @@ add logging to query.py
 rewrite test.py as a calculator
 ```
 
-### Manage Tasks
-
-```text
-add task Build authentication
-
-show tasks
-
-complete task 1
-```
-
 ### Manage Projects
 
 ```text
-add project SHIVI
+add project /Users/username/my_project
 
 show projects
+
+open project my_project
+```
+
+### Manage Tasks
+
+Tasks belong to a tracked project.
+
+```text
+add task build authentication to my_project
+
+show tasks
+
+show tasks for my_project
+
+complete task build authentication in my_project
+
+remove task build authentication from my_project
+```
+
+### Memory
+
+```text
+remember my editor is vim
+
+what is my editor
+
+forget my editor
 ```
 
 ---
@@ -173,12 +191,25 @@ add logging to auth.py
 
 ---
 
+## Configuration
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `SHIVI_LLM_MODEL` | `qwen3:4b` | Ollama chat model |
+| `SHIVI_EMBEDDING_MODEL` | `BAAI/bge-m3` | Embedding model for search |
+| `SHIVI_LLM_THINKING` | `1` | Keep the model's reasoning separate from its answer; `0` only for non-thinking models |
+| `SHIVI_HOME` | `~/.shivi` | Where the vector DB and JSON state live |
+
+> Upgrading from 0.1: the vector store now uses a named collection, so run `ingest` once after upgrading.
+
+---
+
 ## Architecture
 
 ```text
 User
  ↓
-Intent Classification
+Intent Classification (keyword rules → LLM fallback with constrained output)
  ↓
 ┌───────────────┬───────────────┐
 │ Command Tools │ RAG Retrieval │
@@ -216,6 +247,26 @@ Response / Code Changes
 * Git Integration
 * Automatic Error Fix Loops
 * Agent Workflows
+
+---
+
+## Development
+
+```bash
+pip install -e ".[dev,eval]"
+python -m pytest
+```
+
+---
+
+## Research
+
+SHIVI doubles as a testbed for studying assistants that run on small local models. The [evaluation harness](eval/README.md) contains:
+
+* **Intent routing.** Keyword rules vs. a local LLM vs. rules→LLM hybrids, across prompt styles and decoding modes, with latency, confidence intervals and paired significance tests.
+* **File retrieval.** Character vs. syntax-aware chunking, BM25 vs. dense vs. fused retrieval, with and without a filename index.
+
+Pilot results are in [`results/`](results/). The study plan and draft paper are in [`paper/`](paper/).
 
 ---
 

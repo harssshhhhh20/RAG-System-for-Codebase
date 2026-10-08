@@ -1,86 +1,32 @@
+import subprocess
 
+from shivi import config, llm
 from shivi.automation_agent import process_automation
-from shivi.query import process_code_request, extract_file_name, read_file
-from shivi.memory import process_memory_request
-from langchain_ollama import ChatOllama
-from shivi.projects import process_project_request
-from shivi.tasks import process_task_request
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_chroma import Chroma
-from shivi.planner import process_planner_request
+from shivi.fileops import choose_file, extract_file_name, read_file, resolve_file
 from shivi.ingest import ingest_data
+from shivi.memory import process_memory_request
+from shivi.planner import process_planner_request
+from shivi.projects import process_project_request
+from shivi.query import load_filename_index, process_code_request
+from shivi.router import classify_request
 from shivi.source import process_source_request
-import json, time, subprocess, sys
-from shivi.config import DB_PATH, FILENAME_INDEX_FILE
+from shivi.tasks import process_task_request
 
-embeddings = HuggingFaceEmbeddings(
-    model_name = "BAAI/bge-m3"
+FILE_LOCATION_PHRASES = (
+    "which file",
+    "where is",
+    "which module",
+    "which script",
 )
 
-vector_store = Chroma(
-    persist_directory=DB_PATH,
-    embedding_function=embeddings
-)
 
-llm = ChatOllama(
-    model="qwen3:4b",
-    temperature=0
-)
-
-def llm_request(command):
+def answer_about_file(question, file_path):
+    try:
+        content = read_file(file_path)
+    except (OSError, UnicodeDecodeError, ValueError) as e:
+        print(f"Could not read {file_path}: {e}")
+        return
     prompt = f"""
-    Classify the request.
-
-    Labels:
-    automation
-    memory
-    code
-    task
-    qa
-    source
-    ingest
-    project
-    planner
-
-    Request: {command}
-
-    Answer with only one label.
-    """
-    start = time.time()
-    response = llm.invoke(prompt)
-    print(f"LLM Request time : {time.time()-start:.2f}s")
-    intent = response.content.strip().lower()
-    return intent
-
-with open(FILENAME_INDEX_FILE,"r",encoding="utf-8") as f:
-    filename_index = json.load(f)
-
-def answer_qa(question):
-    target_filename = extract_file_name(
-        question
-    )
-
-    question_lower = question.lower()
-
-    if (
-        target_filename
-        and
-        target_filename.lower()
-        in filename_index
-    ):
-        file_path = filename_index[
-            target_filename.lower()
-        ]
-
-        print(
-            f"\nSelected File: {file_path}"
-        )
-
-        content = read_file(
-            file_path
-        )
-
-        prompt = f"""
         You are SHIVI's code assistant.
 
         Explain this file clearly based on the question asked.
@@ -89,76 +35,46 @@ def answer_qa(question):
         {question}
 
         File:
-        {target_filename}
+        {file_path}
 
         Code:
         {content}
 
         Answer:
         """
+    print(llm.ask(prompt))
 
-        response = llm.invoke(
-            prompt
-        )
 
-        print(
-            response.content
-        )
-
+def answer_qa(question):
+    reference = extract_file_name(question)
+    candidates = resolve_file(reference, load_filename_index())
+    if candidates:
+        file_path = choose_file(candidates)
+        if file_path:
+            print(f"\nSelected File: {file_path}")
+            answer_about_file(question, file_path)
         return
 
-    results = (
-        vector_store
-        .similarity_search_with_score(
-            question,
-            k=5
-        )
-    )
-
+    results = llm.get_vector_store().similarity_search_with_score(question, k=5)
     if not results:
-        print(
-            "No relevant documents found."
-        )
+        print("No relevant documents found. Did you run 'ingest'?")
         return
 
-    FILE_LOCATION_PHRASES = [
-        "which file",
-        "where is",
-        "which module",
-        "which script"
-    ]
-
-    if any(
-        phrase in question_lower
-        for phrase in FILE_LOCATION_PHRASES
-    ):
-        best_doc, best_score = results[0]
-
+    if any(phrase in question.lower() for phrase in FILE_LOCATION_PHRASES):
+        # Rank files by their best chunk (lower distance is better).
+        best = {}
+        for doc, score in results:
+            source = doc.metadata.get("source", "unknown")
+            best[source] = min(score, best.get(source, score))
+        print("\nMost likely files:")
+        for source, score in sorted(best.items(), key=lambda item: item[1]):
+            print(f"- {source} (distance {score:.3f})")
         return
-
-    context_parts = []
-
-    for doc, score in results:
-
-        source = doc.metadata.get(
-            "source",
-            "unknown"
-        )
-
-        context_parts.append(
-            f"""
-        FILE:
-        {source}
-
-        CONTENT:
-        {doc.page_content}
-        """
-        )
 
     context = "\n\n".join(
-        context_parts
+        f"FILE:\n{doc.metadata.get('source', 'unknown')}\n\nCONTENT:\n{doc.page_content}"
+        for doc, _ in results
     )
-
     prompt = f"""
     You are SHIVI's knowledge assistant.
 
@@ -180,152 +96,30 @@ def answer_qa(question):
 
     Answer:
     """
-    response = llm.invoke(
-        prompt
-    )
-    print(
-        response.content
-    )
+    print(llm.ask(prompt))
 
-def route_requests(request,intent):
+
+HANDLERS = {
+    "automation": process_automation,
+    "memory": process_memory_request,
+    "code": process_code_request,
+    "project": process_project_request,
+    "task": process_task_request,
+    "planner": process_planner_request,
+    "qa": answer_qa,
+    "source": process_source_request,
+    "ingest": lambda request: ingest_data(),
+}
+
+
+def route_requests(request, intent):
     print(f"Intent: {intent}")
-    if intent == "automation":
-        process_automation(
-            request
-        )
-
-    elif intent == "memory":
-        process_memory_request(
-            request
-        )
-
-    elif intent == "code":
-        process_code_request(
-            request
-        )
-
-    elif intent == "project":
-        process_project_request(request)
-
-    elif intent == "task":
-        process_task_request(request)
-
-    elif intent =="planner":
-        process_planner_request(request)
-
-    elif intent=="qa":
-        answer_qa(request)
-
-    elif intent == "ingest":
-        ingest_data()
-        global filename_index
-        global vector_store
-        with open(
-            FILENAME_INDEX_FILE,
-            "r",
-            encoding="utf-8"
-        ) as f:
-            filename_index = json.load(f)
-        vector_store = Chroma(
-            persist_directory=DB_PATH,
-            embedding_function=embeddings
-        )
-        print("Knowledge base updated.")
-
-    elif intent == "source":
-        process_source_request(request)
-
-    else:
+    handler = HANDLERS.get(intent)
+    if handler is None:
         print(f"Unknown Intent: {intent}")
+        return
+    handler(request)
 
-def classify_request(command):
-
-    command = command.lower()
-
-    QA_PREFIXES = [
-    "how",
-    "what",
-    "why",
-    "when",
-    "where",
-    "which",
-    "who"
-    ]
-
-    if any(
-        command.startswith(x)
-        for x in QA_PREFIXES
-    ):
-        return "qa"
-
-    if any(word in command for word in [
-        "open",
-        "launch",
-        "start"
-    ]):
-        return "automation"
-
-    TASK_ACTIONS = [
-    "add",
-    "show",
-    "list",
-    "remove",
-    "delete",
-    "complete"
-    ]
-    if (
-        any(
-            command.startswith(action)
-            for action in TASK_ACTIONS
-        )
-        and
-        "task" in command
-    ):
-        return "task"
-
-    PROJECT_KEYWORDS = [
-    "project",
-    "projects"
-    ]
-
-    if (
-        command.startswith(("add", "show", "list", "remove", "delete"))
-        and any(
-            word in command
-            for word in PROJECT_KEYWORDS
-    )
-    ):
-        return "project"
-
-    if any(word in command for word in [
-        "remember",
-        "forget"
-    ]):
-        return "memory"
-
-    SOURCE_ACTIONS = [
-    "add source",
-    "remove source",
-    "show sources"
-    ]
-
-    if any(
-        command.startswith(action)
-        for action in SOURCE_ACTIONS
-    ):
-        return "source"
-
-    if any(word in command for word in [
-        ".py",
-        "file",
-        "code"
-    ]):
-        return "code"
-    
-    if command == "ingest":
-        return "ingest"
-
-    return llm_request(command)
 
 def check_ollama():
     try:
@@ -335,8 +129,9 @@ def check_ollama():
             check=True
         )
         return True
-    except Exception:
+    except (OSError, subprocess.CalledProcessError):
         return False
+
 
 def main():
     if not check_ollama():
@@ -344,9 +139,11 @@ def main():
         print("\nInstall Ollama:")
         print("https://ollama.com")
         print("\nThen run:")
-        print("ollama pull qwen3:4b")
+        print(f"ollama pull {config.LLM_MODEL}")
         return
-    
+
+    config.ensure_storage()
+
     print(r"""
     ███████╗██╗  ██╗██╗██╗   ██╗██╗
     ██╔════╝██║  ██║██║██║   ██║██║
@@ -361,8 +158,13 @@ def main():
     print("Type 'exit' to quit.")
     print("To ingest simply bash 'ingest'.")
     while True:
-        request = input("SHIVI >>> ")
-        if request.lower() in ["exit","quit"]:
+        try:
+            request = input("SHIVI >>> ").strip()
+        except (EOFError, KeyboardInterrupt):
+            request = "exit"
+        if not request:
+            continue
+        if request.lower() in ["exit", "quit"]:
             print(r"""
             ██████╗  ██████╗  ██████╗ ██████╗
             ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗
@@ -380,10 +182,11 @@ def main():
             """)
             print("😴 SHIVI Going To Sleep...")
             break
-        intent = classify_request(request)
-        route_requests(request,intent)
+        intent, decided_by = classify_request(request, config.LLM_MODEL)
+        if decided_by == "llm":
+            print("(routed by LLM)")
+        route_requests(request, intent)
+
 
 if __name__ == "__main__":
     main()
-
-

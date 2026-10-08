@@ -69,6 +69,7 @@ def add_project(path):
 
 def remove_project(name):
 
+    name = normalize_project_name(name)
     projects = load_projects()
 
     if name not in projects:
@@ -119,9 +120,7 @@ def open_project(name):
 
     path = project["path"]
 
-    os.system(
-        f'open "{path}"'
-    )
+    subprocess.Popen(["open", path])
 
     print(
         f"Opened project: {name}"
@@ -129,7 +128,8 @@ def open_project(name):
 
 def process_project_request(command):
 
-    command = command.lower().strip()
+    original = command.strip()
+    command = original.lower()
 
     if command == "what projects am i working on":
 
@@ -172,13 +172,9 @@ def process_project_request(command):
 
     if command.startswith("add project "):
 
-        project_path = (
-            command
-            .replace(
-                "add project ",
-                ""
-            )
-            .strip()
+        # Use the original text: paths are case-sensitive on many systems.
+        project_path = os.path.expanduser(
+            original[len("add project "):].strip()
         )
 
         add_project(

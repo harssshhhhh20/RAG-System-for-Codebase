@@ -1,0 +1,1127 @@
+
+== qwen3-4b__zero_shot__constrained: 0 done, 340 to go
+   warm-up 5.5s
+   [1/340]  1.26s automation ok
+   [2/340]  1.24s automation MISS (code)
+   [3/340]  1.25s automation MISS (task)
+   [4/340]  1.24s automation MISS (qa)
+   [5/340]  1.27s automation MISS (qa)
+   [6/340]  1.24s automation ok
+   [7/340]  1.24s automation MISS (code)
+   [8/340]  1.41s automation MISS (task)
+   [9/340]  1.34s automation MISS (code)
+   [10/340]  1.60s automation MISS (qa)
+   [11/340]  1.85s automation MISS (code)
+   [12/340]  1.62s automation ok
+   [13/340]  1.66s automation MISS (qa)
+   [14/340]  1.35s automation MISS (task)
+   [15/340]  1.34s automation ok
+   [16/340]  1.55s automation MISS (source)
+   [17/340]  1.83s automation MISS (qa)
+   [18/340]  1.34s automation MISS (code)
+   [19/340]  1.38s automation MISS (qa)
+   [20/340]  1.24s automation MISS (code)
+   [21/340]  1.25s automation MISS (qa)
+   [22/340]  1.69s automation MISS (qa)
+   [23/340]  1.57s automation ok
+   [24/340]  1.23s automation MISS (qa)
+   [25/340]  1.36s automation MISS (code)
+   [26/340]  1.32s automation MISS (qa)
+   [27/340]  1.25s automation MISS (qa)
+   [28/340]  1.22s automation MISS (code)
+   [29/340]  1.23s automation MISS (qa)
+   [30/340]  1.41s automation MISS (code)
+   [31/340]  1.65s automation MISS (task)
+   [32/340]  2.05s automation MISS (qa)
+   [33/340]  1.60s automation MISS (qa)
+   [34/340]  1.24s automation MISS (qa)
+   [35/340]  1.28s automation MISS (task)
+   [36/340]  1.27s automation MISS (task)
+   [37/340]  1.29s automation MISS (code)
+   [38/340]  1.27s automation MISS (qa)
+   [39/340]  1.43s automation MISS (task)
+   [40/340]  1.22s automation MISS (task)
+   [41/340]  1.74s memory     MISS (qa)
+   [42/340]  1.37s memory     MISS (task)
+   [43/340]  1.26s memory     MISS (qa)
+   [44/340]  1.24s memory     MISS (source)
+   [45/340]  1.64s memory     MISS (qa)
+   [46/340]  1.69s memory     MISS (qa)
+   [47/340]  1.29s memory     MISS (qa)
+   [48/340]  1.43s memory     MISS (task)
+   [49/340]  1.45s memory     MISS (qa)
+   [50/340]  1.26s memory     MISS (qa)
+   [51/340]  1.22s memory     MISS (source)
+   [52/340]  1.86s memory     MISS (project)
+   [53/340]  1.82s memory     MISS (task)
+   [54/340]  1.30s memory     MISS (qa)
+   [55/340]  1.83s memory     MISS (qa)
+   [56/340]  1.24s memory     MISS (task)
+   [57/340]  1.23s memory     MISS (source)
+   [58/340]  1.24s memory     MISS (qa)
+   [59/340]  1.37s memory     MISS (source)
+   [60/340]  1.28s memory     MISS (qa)
+   [61/340]  1.48s memory     MISS (qa)
+   [62/340]  1.70s memory     MISS (qa)
+   [63/340]  1.47s memory     MISS (qa)
+   [64/340]  1.34s memory     MISS (qa)
+   [65/340]  1.34s memory     MISS (task)
+   [66/340]  1.43s memory     ok
+   [67/340]  1.29s memory     MISS (code)
+   [68/340]  1.55s memory     MISS (qa)
+   [69/340]  1.35s memory     MISS (source)
+   [70/340]  1.24s memory     MISS (qa)
+   [71/340]  1.44s memory     MISS (qa)
+   [72/340]  1.27s memory     MISS (qa)
+   [73/340]  1.25s memory     MISS (qa)
+   [74/340]  1.69s memory     MISS (qa)
+   [75/340]  1.55s memory     MISS (qa)
+   [76/340]  1.64s memory     MISS (qa)
+   [77/340]  3.33s memory     MISS (project)
+   [78/340]  2.37s memory     MISS (code)
+   [79/340]  1.87s memory     MISS (task)
+   [80/340]  1.61s memory     MISS (code)
+   [81/340]  1.67s code       ok
+   [82/340]  1.77s code       MISS (ingest)
+   [83/340]  1.98s code       ok
+   [84/340]  2.05s code       ok
+   [85/340]  3.06s code       ok
+   [86/340]  2.33s code       MISS (planner)
+   [87/340]  1.70s code       ok
+   [88/340]  1.84s code       MISS (memory)
+   [89/340]  1.76s code       MISS (qa)
+   [90/340]  1.85s code       ok
+   [91/340]  1.93s code       MISS (source)
+   [92/340]  1.57s code       ok
+   [93/340]  1.72s code       ok
+   [94/340]  1.97s code       ok
+   [95/340]  1.96s code       MISS (ingest)
+   [96/340]  1.90s code       ok
+   [97/340]  2.01s code       ok
+   [98/340]  1.96s code       ok
+   [99/340]  1.94s code       MISS (source)
+   [100/340]  1.81s code       ok
+   [101/340]  1.56s code       ok
+   [102/340]  1.47s code       ok
+   [103/340]  1.40s code       ok
+   [104/340]  1.63s code       ok
+   [105/340]  1.97s code       ok
+   [106/340]  1.69s code       MISS (qa)
+   [107/340]  1.41s code       ok
+   [108/340]  1.27s code       ok
+   [109/340]  1.24s code       ok
+   [110/340]  1.27s code       MISS (automation)
+   [111/340]  1.87s code       ok
+   [112/340]  1.79s code       ok
+   [113/340]  1.72s code       ok
+   [114/340]  1.50s code       ok
+   [115/340]  1.42s code       ok
+   [116/340]  1.42s code       MISS (task)
+   [117/340]  1.81s code       MISS (planner)
+   [118/340]  1.44s code       ok
+   [119/340]  1.71s code       ok
+   [120/340]  2.10s code       ok
+   [121/340]  2.21s code       MISS (ingest)
+   [122/340]  2.36s task       ok
+   [123/340]  2.62s task       ok
+   [124/340]  2.44s task       ok
+   [125/340]  2.29s task       ok
+   [126/340]  2.20s task       ok
+   [127/340]  1.72s task       MISS (qa)
+   [128/340]  1.54s task       ok
+   [129/340]  1.68s task       ok
+   [130/340]  2.19s task       ok
+   [131/340]  1.99s task       ok
+   [132/340]  1.94s task       ok
+   [133/340]  1.64s task       ok
+   [134/340]  1.48s task       ok
+   [135/340]  1.54s task       ok
+   [136/340]  1.39s task       ok
+   [137/340]  1.39s task       MISS (code)
+   [138/340]  1.60s task       MISS (qa)
+   [139/340]  1.65s task       ok
+   [140/340]  1.58s task       ok
+   [141/340]  1.50s task       MISS (memory)
+   [142/340]  1.40s task       ok
+   [143/340]  1.90s task       MISS (ingest)
+   [144/340]  1.65s task       ok
+   [145/340]  1.56s task       ok
+   [146/340]  1.38s task       ok
+   [147/340]  1.55s task       MISS (qa)
+   [148/340]  1.45s task       ok
+   [149/340]  1.32s task       ok
+   [150/340]  1.59s task       ok
+   [151/340]  1.66s task       ok
+   [152/340]  1.66s task       ok
+   [153/340]  1.77s task       ok
+   [154/340]  2.31s task       ok
+   [155/340]  1.88s task       ok
+   [156/340]  1.69s task       ok
+   [157/340]  1.87s task       ok
+   [158/340]  1.65s task       ok
+   [159/340]  1.45s task       ok
+   [160/340]  1.31s task       ok
+   [161/340]  1.31s task       ok
+   [162/340]  1.42s qa         MISS (ingest)
+   [163/340]  1.52s qa         MISS (planner)
+   [164/340]  1.37s qa         ok
+   [165/340]  1.31s qa         MISS (source)
+   [166/340]  1.34s qa         ok
+   [167/340]  1.32s qa         ok
+   [168/340]  1.54s qa         ok
+   [169/340]  1.82s qa         ok
+   [170/340]  1.43s qa         ok
+   [171/340]  1.69s qa         MISS (code)
+   [172/340]  1.38s qa         ok
+   [173/340]  1.47s qa         ok
+   [174/340]  1.42s qa         MISS (task)
+   [175/340]  1.47s qa         MISS (code)
+   [176/340]  1.40s qa         ok
+   [177/340]  1.51s qa         ok
+   [178/340]  1.38s qa         ok
+   [179/340]  1.52s qa         ok
+   [180/340]  1.85s qa         MISS (memory)
+   [181/340]  1.24s qa         ok
+   [182/340]  1.19s qa         ok
+   [183/340]  1.19s qa         MISS (source)
+   [184/340]  1.21s qa         ok
+   [185/340]  1.38s qa         MISS (source)
+   [186/340]  1.17s qa         ok
+   [187/340]  1.18s qa         MISS (project)
+   [188/340]  1.19s qa         ok
+   [189/340]  1.19s qa         MISS (source)
+   [190/340]  1.26s qa         MISS (ingest)
+   [191/340]  1.32s qa         MISS (code)
+   [192/340]  1.19s qa         MISS (task)
+   [193/340]  1.16s qa         MISS (memory)
+   [194/340]  1.23s qa         MISS (code)
+   [195/340]  1.17s qa         ok
+   [196/340]  1.16s qa         MISS (source)
+   [197/340]  1.17s qa         MISS (project)
+   [198/340]  1.17s qa         ok
+   [199/340]  1.15s qa         MISS (task)
+   [200/340]  1.25s qa         MISS (ingest)
+   [201/340]  1.54s qa         MISS (code)
+   [202/340]  1.81s source     ok
+   [203/340]  1.76s source     ok
+   [204/340]  1.43s source     ok
+   [205/340]  1.22s source     ok
+   [206/340]  1.18s source     ok
+   [207/340]  1.16s source     ok
+   [208/340]  1.18s source     ok
+   [209/340]  2.09s source     ok
+   [210/340]  1.42s source     ok
+   [211/340]  1.25s source     ok
+   [212/340]  1.21s source     ok
+   [213/340]  1.25s source     ok
+   [214/340]  1.45s source     ok
+   [215/340]  1.70s source     ok
+   [216/340]  1.33s source     MISS (ingest)
+   [217/340]  1.22s source     ok
+   [218/340]  1.30s source     ok
+   [219/340]  1.21s source     ok
+   [220/340]  1.20s source     ok
+   [221/340]  1.21s source     ok
+   [222/340]  1.26s source     MISS (qa)
+   [223/340]  1.24s source     MISS (qa)
+   [224/340]  1.26s source     ok
+   [225/340]  1.29s source     ok
+   [226/340]  1.22s source     MISS (project)
+   [227/340]  1.20s source     ok
+   [228/340]  1.26s source     MISS (qa)
+   [229/340]  1.23s source     ok
+   [230/340]  1.22s source     ok
+   [231/340]  1.21s source     ok
+   [232/340]  1.28s source     ok
+   [233/340]  1.35s source     ok
+   [234/340]  1.21s source     ok
+   [235/340]  1.19s source     ok
+   [236/340]  1.19s source     ok
+   [237/340]  1.17s source     ok
+   [238/340]  1.29s source     MISS (ingest)
+   [239/340]  1.20s source     ok
+   [240/340]  1.37s ingest     ok
+   [241/340]  1.42s ingest     ok
+   [242/340]  1.22s ingest     MISS (automation)
+   [243/340]  1.25s ingest     MISS (automation)
+   [244/340]  1.32s ingest     ok
+   [245/340]  1.37s ingest     ok
+   [246/340]  1.18s ingest     MISS (qa)
+   [247/340]  1.24s ingest     MISS (source)
+   [248/340]  1.22s ingest     MISS (automation)
+   [249/340]  1.23s ingest     MISS (source)
+   [250/340]  1.33s ingest     ok
+   [251/340]  1.23s ingest     MISS (qa)
+   [252/340]  1.19s ingest     MISS (source)
+   [253/340]  1.19s ingest     MISS (source)
+   [254/340]  1.23s ingest     MISS (automation)
+   [255/340]  1.31s ingest     ok
+   [256/340]  1.33s ingest     ok
+   [257/340]  1.31s ingest     ok
+   [258/340]  1.22s ingest     MISS (qa)
+   [259/340]  1.49s ingest     MISS (source)
+   [260/340]  1.40s ingest     ok
+   [261/340]  1.36s ingest     MISS (qa)
+   [262/340]  1.31s ingest     MISS (source)
+   [263/340]  1.33s ingest     ok
+   [264/340]  1.94s ingest     ok
+   [265/340]  1.92s ingest     ok
+   [266/340]  1.65s ingest     MISS (automation)
+   [267/340]  1.86s ingest     ok
+   [268/340]  1.39s ingest     MISS (source)
+   [269/340]  1.23s ingest     MISS (source)
+   [270/340]  1.37s ingest     ok
+   [271/340]  1.31s ingest     ok
+   [272/340]  1.20s ingest     MISS (source)
+   [273/340]  1.21s project    ok
+   [274/340]  1.20s project    ok
+   [275/340]  1.21s project    ok
+   [276/340]  1.40s project    ok
+   [277/340]  2.06s project    ok
+   [278/340]  1.50s project    ok
+   [279/340]  1.33s project    ok
+   [280/340]  1.33s project    ok
+   [281/340]  1.28s project    ok
+   [282/340]  1.32s project    ok
+   [283/340]  1.70s project    ok
+   [284/340]  1.88s project    ok
+   [285/340]  1.71s project    ok
+   [286/340]  1.26s project    ok
+   [287/340]  1.57s project    ok
+   [288/340]  1.19s project    ok
+   [289/340]  1.19s project    ok
+   [290/340]  1.35s project    ok
+   [291/340]  1.86s project    ok
+   [292/340]  1.48s project    ok
+   [293/340]  1.65s project    ok
+   [294/340]  1.66s project    ok
+   [295/340]  1.20s project    ok
+   [296/340]  1.20s project    ok
+   [297/340]  1.17s project    ok
+   [298/340]  1.19s project    ok
+   [299/340]  1.16s project    ok
+   [300/340]  1.16s project    ok
+   [301/340]  1.17s project    ok
+   [302/340]  1.16s project    ok
+   [303/340]  1.16s project    ok
+   [304/340]  1.17s project    ok
+   [305/340]  1.22s project    MISS (memory)
+   [306/340]  1.17s project    ok
+   [307/340]  1.35s project    ok
+   [308/340]  1.22s project    ok
+   [309/340]  1.20s project    ok
+   [310/340]  1.17s project    ok
+   [311/340]  1.17s planner    MISS (task)
+   [312/340]  1.19s planner    MISS (task)
+   [313/340]  1.31s planner    ok
+   [314/340]  1.18s planner    MISS (task)
+   [315/340]  1.40s planner    ok
+   [316/340]  1.22s planner    MISS (task)
+   [317/340]  1.17s planner    MISS (task)
+   [318/340]  1.16s planner    MISS (task)
+   [319/340]  1.30s planner    ok
+   [320/340]  1.16s planner    MISS (task)
+   [321/340]  1.15s planner    MISS (task)
+   [322/340]  1.15s planner    MISS (task)
+   [323/340]  1.20s planner    MISS (task)
+   [324/340]  1.16s planner    MISS (task)
+   [325/340]  1.15s planner    MISS (task)
+   [326/340]  1.16s planner    MISS (task)
+   [327/340]  1.47s planner    ok
+   [328/340]  1.86s planner    MISS (task)
+   [329/340]  1.22s planner    MISS (task)
+   [330/340]  1.36s planner    MISS (task)
+   [331/340]  1.17s planner    MISS (qa)
+   [332/340]  1.38s planner    ok
+   [333/340]  1.25s planner    MISS (task)
+   [334/340]  1.26s planner    ok
+   [335/340]  1.24s planner    MISS (project)
+   [336/340]  1.27s planner    ok
+   [337/340]  1.52s planner    MISS (task)
+   [338/340]  1.21s planner    MISS (task)
+   [339/340]  1.19s planner    MISS (task)
+   [340/340]  1.21s planner    MISS (task)
+
+== qwen3-4b__definitions__constrained: 0 done, 340 to go
+   warm-up 2.6s
+   [1/340]  1.19s automation ok
+   [2/340]  1.21s automation ok
+   [3/340]  1.20s automation ok
+   [4/340]  1.19s automation ok
+   [5/340]  1.18s automation ok
+   [6/340]  1.21s automation ok
+   [7/340]  1.18s automation ok
+   [8/340]  1.19s automation ok
+   [9/340]  1.19s automation ok
+   [10/340]  1.19s automation ok
+   [11/340]  1.24s automation ok
+   [12/340]  1.18s automation ok
+   [13/340]  1.18s automation ok
+   [14/340]  1.19s automation ok
+   [15/340]  1.44s automation ok
+   [16/340]  1.19s automation ok
+   [17/340]  1.40s automation ok
+   [18/340]  1.19s automation ok
+   [19/340]  1.18s automation ok
+   [20/340]  1.42s automation ok
+   [21/340]  1.19s automation ok
+   [22/340]  1.20s automation ok
+   [23/340]  1.21s automation ok
+   [24/340]  1.21s automation ok
+   [25/340]  1.17s automation ok
+   [26/340]  1.20s automation ok
+   [27/340]  1.17s automation ok
+   [28/340]  1.19s automation ok
+   [29/340]  1.20s automation ok
+   [30/340]  1.19s automation ok
+   [31/340]  1.53s automation ok
+   [32/340]  1.27s automation ok
+   [33/340]  1.20s automation ok
+   [34/340]  1.20s automation ok
+   [35/340]  1.20s automation ok
+   [36/340]  1.19s automation ok
+   [37/340]  1.19s automation ok
+   [38/340]  1.20s automation ok
+   [39/340]  1.20s automation ok
+   [40/340]  1.21s automation ok
+   [41/340]  1.41s memory     ok
+   [42/340]  1.42s memory     ok
+   [43/340]  1.70s memory     ok
+   [44/340]  2.14s memory     ok
+   [45/340]  1.71s memory     ok
+   [46/340]  1.54s memory     ok
+   [47/340]  1.50s memory     ok
+   [48/340]  1.44s memory     ok
+   [49/340]  1.45s memory     ok
+   [50/340]  1.41s memory     ok
+   [51/340]  1.42s memory     ok
+   [52/340]  1.43s memory     ok
+   [53/340]  1.19s memory     ok
+   [54/340]  1.43s memory     ok
+   [55/340]  1.39s memory     ok
+   [56/340]  1.43s memory     ok
+   [57/340]  1.42s memory     ok
+   [58/340]  1.20s memory     ok
+   [59/340]  1.40s memory     ok
+   [60/340]  1.44s memory     ok
+   [61/340]  1.38s memory     ok
+   [62/340]  1.41s memory     ok
+   [63/340]  1.40s memory     ok
+   [64/340]  1.23s memory     ok
+   [65/340]  1.46s memory     ok
+   [66/340]  1.42s memory     ok
+   [67/340]  1.40s memory     ok
+   [68/340]  1.24s memory     ok
+   [69/340]  1.44s memory     ok
+   [70/340]  1.18s memory     ok
+   [71/340]  1.19s memory     ok
+   [72/340]  1.39s memory     ok
+   [73/340]  1.42s memory     ok
+   [74/340]  1.43s memory     ok
+   [75/340]  1.40s memory     ok
+   [76/340]  1.49s memory     MISS (qa)
+   [77/340]  1.40s memory     ok
+   [78/340]  1.41s memory     ok
+   [79/340]  1.21s memory     ok
+   [80/340]  1.40s memory     ok
+   [81/340]  1.23s code       ok
+   [82/340]  1.20s code       ok
+   [83/340]  1.18s code       ok
+   [84/340]  1.20s code       ok
+   [85/340]  1.20s code       ok
+   [86/340]  1.41s code       ok
+   [87/340]  1.92s code       ok
+   [88/340]  1.49s code       ok
+   [89/340]  1.64s code       ok
+   [90/340]  1.20s code       ok
+   [91/340]  1.21s code       ok
+   [92/340]  1.39s code       ok
+   [93/340]  1.24s code       ok
+   [94/340]  1.22s code       ok
+   [95/340]  1.22s code       ok
+   [96/340]  1.21s code       ok
+   [97/340]  1.20s code       ok
+   [98/340]  1.18s code       ok
+   [99/340]  1.20s code       ok
+   [100/340]  1.18s code       ok
+   [101/340]  1.21s code       ok
+   [102/340]  1.20s code       ok
+   [103/340]  1.21s code       ok
+   [104/340]  1.17s code       ok
+   [105/340]  1.23s code       ok
+   [106/340]  1.19s code       ok
+   [107/340]  1.19s code       ok
+   [108/340]  1.18s code       ok
+   [109/340]  1.42s code       MISS (qa)
+   [110/340]  1.21s code       ok
+   [111/340]  1.44s code       ok
+   [112/340]  1.23s code       ok
+   [113/340]  1.19s code       ok
+   [114/340]  1.19s code       ok
+   [115/340]  1.21s code       ok
+   [116/340]  1.20s code       ok
+   [117/340]  1.18s code       MISS (task)
+   [118/340]  1.19s code       ok
+   [119/340]  1.20s code       ok
+   [120/340]  1.18s code       ok
+   [121/340]  1.28s code       MISS (ingest)
+   [122/340]  1.19s task       ok
+   [123/340]  1.21s task       ok
+   [124/340]  1.18s task       ok
+   [125/340]  1.17s task       ok
+   [126/340]  1.17s task       ok
+   [127/340]  1.20s task       ok
+   [128/340]  1.19s task       ok
+   [129/340]  1.23s task       ok
+   [130/340]  1.18s task       ok
+   [131/340]  1.19s task       ok
+   [132/340]  1.21s task       ok
+   [133/340]  1.19s task       ok
+   [134/340]  1.23s task       ok
+   [135/340]  1.20s task       ok
+   [136/340]  1.28s task       MISS (planner)
+   [137/340]  1.21s task       MISS (project)
+   [138/340]  1.21s task       ok
+   [139/340]  1.32s task       MISS (planner)
+   [140/340]  1.20s task       ok
+   [141/340]  1.37s task       MISS (memory)
+   [142/340]  1.17s task       ok
+   [143/340]  1.22s task       ok
+   [144/340]  1.27s task       ok
+   [145/340]  1.59s task       ok
+   [146/340]  2.27s task       ok
+   [147/340]  1.80s task       MISS (planner)
+   [148/340]  1.80s task       ok
+   [149/340]  1.95s task       ok
+   [150/340]  1.72s task       ok
+   [151/340]  1.41s task       ok
+   [152/340]  1.36s task       ok
+   [153/340]  1.33s task       ok
+   [154/340]  1.37s task       ok
+   [155/340]  1.35s task       ok
+   [156/340]  1.45s task       MISS (project)
+   [157/340]  1.33s task       ok
+   [158/340]  1.90s task       ok
+   [159/340]  1.86s task       ok
+   [160/340]  1.86s task       ok
+   [161/340]  1.76s task       ok
+   [162/340]  1.47s qa         MISS (ingest)
+   [163/340]  1.59s qa         MISS (planner)
+   [164/340]  1.34s qa         MISS (code)
+   [165/340]  1.47s qa         MISS (ingest)
+   [166/340]  1.56s qa         ok
+   [167/340]  1.65s qa         ok
+   [168/340]  1.50s qa         ok
+   [169/340]  2.46s qa         ok
+   [170/340]  2.09s qa         ok
+   [171/340]  1.55s qa         ok
+   [172/340]  1.52s qa         ok
+   [173/340]  1.43s qa         ok
+   [174/340]  1.53s qa         MISS (project)
+   [175/340]  1.59s qa         ok
+   [176/340]  1.52s qa         MISS (ingest)
+   [177/340]  1.27s qa         ok
+   [178/340]  1.64s qa         ok
+   [179/340]  1.55s qa         ok
+   [180/340]  1.41s qa         MISS (memory)
+   [181/340]  1.61s qa         ok
+   [182/340]  1.63s qa         ok
+   [183/340]  1.37s qa         MISS (project)
+   [184/340]  1.93s qa         ok
+   [185/340]  1.80s qa         ok
+   [186/340]  1.60s qa         ok
+   [187/340]  1.40s qa         MISS (project)
+   [188/340]  1.67s qa         ok
+   [189/340]  1.65s qa         ok
+   [190/340]  1.42s qa         MISS (ingest)
+   [191/340]  1.79s qa         ok
+   [192/340]  1.32s qa         MISS (task)
+   [193/340]  2.32s qa         ok
+   [194/340]  1.89s qa         MISS (code)
+   [195/340]  1.95s qa         MISS (memory)
+   [196/340]  2.21s qa         MISS (ingest)
+   [197/340]  2.28s qa         ok
+   [198/340]  2.33s qa         MISS (memory)
+   [199/340]  1.67s qa         MISS (project)
+   [200/340]  2.30s qa         MISS (ingest)
+   [201/340]  1.90s qa         MISS (automation)
+   [202/340]  1.36s source     ok
+   [203/340]  1.34s source     ok
+   [204/340]  1.50s source     ok
+   [205/340]  1.31s source     ok
+   [206/340]  1.37s source     ok
+   [207/340]  1.31s source     ok
+   [208/340]  1.37s source     ok
+   [209/340]  1.40s source     ok
+   [210/340]  1.92s source     ok
+   [211/340]  1.31s source     ok
+   [212/340]  1.44s source     ok
+   [213/340]  1.29s source     ok
+   [214/340]  1.35s source     ok
+   [215/340]  1.39s source     ok
+   [216/340]  1.33s source     ok
+   [217/340]  1.42s source     ok
+   [218/340]  1.35s source     ok
+   [219/340]  1.43s source     ok
+   [220/340]  1.31s source     ok
+   [221/340]  1.39s source     ok
+   [222/340]  1.30s source     ok
+   [223/340]  1.41s source     ok
+   [224/340]  1.42s source     ok
+   [225/340]  1.61s source     ok
+   [226/340]  1.37s source     ok
+   [227/340]  1.52s source     ok
+   [228/340]  1.32s source     ok
+   [229/340]  1.98s source     ok
+   [230/340]  0.56s source     ok
+   [231/340]  0.55s source     ok
+   [232/340]  0.56s source     ok
+   [233/340]  0.58s source     ok
+   [234/340]  0.56s source     ok
+   [235/340]  0.55s source     ok
+   [236/340]  0.54s source     ok
+   [237/340]  0.53s source     ok
+   [238/340]  0.54s source     ok
+   [239/340]  0.55s source     ok
+   [240/340]  0.71s ingest     ok
+   [241/340]  0.60s ingest     ok
+   [242/340]  0.63s ingest     ok
+   [243/340]  0.64s ingest     ok
+   [244/340]  0.68s ingest     ok
+   [245/340]  0.62s ingest     ok
+   [246/340]  0.54s ingest     MISS (source)
+   [247/340]  0.57s ingest     ok
+   [248/340]  0.58s ingest     ok
+   [249/340]  0.59s ingest     ok
+   [250/340]  0.70s ingest     ok
+   [251/340]  0.58s ingest     ok
+   [252/340]  0.54s ingest     MISS (source)
+   [253/340]  0.59s ingest     ok
+   [254/340]  0.66s ingest     ok
+   [255/340]  0.76s ingest     ok
+   [256/340]  0.69s ingest     ok
+   [257/340]  0.60s ingest     ok
+   [258/340]  0.61s ingest     ok
+   [259/340]  0.59s ingest     ok
+   [260/340]  0.59s ingest     ok
+   [261/340]  0.59s ingest     ok
+   [262/340]  0.61s ingest     MISS (source)
+   [263/340]  0.60s ingest     ok
+   [264/340]  0.59s ingest     ok
+   [265/340]  0.70s ingest     ok
+   [266/340]  0.61s ingest     ok
+   [267/340]  0.62s ingest     ok
+   [268/340]  0.73s ingest     ok
+   [269/340]  0.60s ingest     ok
+   [270/340]  0.62s ingest     ok
+   [271/340]  0.62s ingest     ok
+   [272/340]  0.60s ingest     ok
+   [273/340]  0.59s project    ok
+   [274/340]  0.54s project    ok
+   [275/340]  0.54s project    ok
+   [276/340]  0.54s project    ok
+   [277/340]  0.55s project    ok
+   [278/340]  0.54s project    ok
+   [279/340]  0.65s project    ok
+   [280/340]  0.53s project    ok
+   [281/340]  0.55s project    ok
+   [282/340]  0.54s project    ok
+   [283/340]  0.62s project    ok
+   [284/340]  0.57s project    ok
+   [285/340]  0.57s project    ok
+   [286/340]  0.54s project    ok
+   [287/340]  0.54s project    ok
+   [288/340]  0.57s project    ok
+   [289/340]  0.58s project    ok
+   [290/340]  0.54s project    ok
+   [291/340]  0.55s project    ok
+   [292/340]  0.55s project    ok
+   [293/340]  0.54s project    ok
+   [294/340]  0.57s project    ok
+   [295/340]  0.53s project    ok
+   [296/340]  0.54s project    ok
+   [297/340]  0.54s project    ok
+   [298/340]  0.57s project    ok
+   [299/340]  0.65s project    ok
+   [300/340]  0.55s project    ok
+   [301/340]  0.63s project    ok
+   [302/340]  0.53s project    ok
+   [303/340]  0.60s project    ok
+   [304/340]  0.58s project    ok
+   [305/340]  0.54s project    ok
+   [306/340]  0.73s project    ok
+   [307/340]  0.53s project    ok
+   [308/340]  0.54s project    MISS (task)
+   [309/340]  0.53s project    ok
+   [310/340]  0.56s project    ok
+   [311/340]  0.59s planner    ok
+   [312/340]  0.57s planner    ok
+   [313/340]  0.59s planner    ok
+   [314/340]  0.69s planner    ok
+   [315/340]  0.60s planner    ok
+   [316/340]  0.58s planner    ok
+   [317/340]  0.56s planner    ok
+   [318/340]  0.59s planner    ok
+   [319/340]  0.60s planner    ok
+   [320/340]  0.59s planner    ok
+   [321/340]  0.58s planner    ok
+   [322/340]  0.58s planner    ok
+   [323/340]  0.57s planner    ok
+   [324/340]  0.58s planner    ok
+   [325/340]  0.58s planner    ok
+   [326/340]  0.58s planner    ok
+   [327/340]  0.68s planner    ok
+   [328/340]  0.57s planner    ok
+   [329/340]  0.58s planner    ok
+   [330/340]  0.60s planner    ok
+   [331/340]  0.58s planner    ok
+   [332/340]  0.57s planner    ok
+   [333/340]  0.57s planner    ok
+   [334/340]  0.60s planner    ok
+   [335/340]  0.59s planner    ok
+   [336/340]  0.61s planner    ok
+   [337/340]  0.58s planner    ok
+   [338/340]  0.57s planner    ok
+   [339/340]  0.58s planner    ok
+   [340/340]  0.58s planner    ok
+
+== qwen3-4b__few_shot__constrained: 0 done, 340 to go
+   warm-up 1.1s
+   [1/340]  0.65s automation ok
+   [2/340]  0.62s automation ok
+   [3/340]  0.64s automation ok
+   [4/340]  0.65s automation ok
+   [5/340]  0.63s automation ok
+   [6/340]  0.65s automation ok
+   [7/340]  0.65s automation ok
+   [8/340]  0.65s automation ok
+   [9/340]  0.65s automation ok
+   [10/340]  0.63s automation ok
+   [11/340]  0.65s automation ok
+   [12/340]  0.63s automation ok
+   [13/340]  0.65s automation ok
+   [14/340]  0.64s automation ok
+   [15/340]  0.64s automation ok
+   [16/340]  0.66s automation ok
+   [17/340]  0.66s automation ok
+   [18/340]  0.64s automation ok
+   [19/340]  0.65s automation ok
+   [20/340]  0.64s automation ok
+   [21/340]  0.65s automation ok
+   [22/340]  0.65s automation ok
+   [23/340]  0.65s automation ok
+   [24/340]  0.64s automation ok
+   [25/340]  0.65s automation ok
+   [26/340]  0.63s automation ok
+   [27/340]  0.63s automation ok
+   [28/340]  0.65s automation ok
+   [29/340]  0.64s automation ok
+   [30/340]  0.66s automation ok
+   [31/340]  0.65s automation ok
+   [32/340]  0.65s automation ok
+   [33/340]  0.64s automation ok
+   [34/340]  0.64s automation ok
+   [35/340]  0.65s automation ok
+   [36/340]  0.65s automation ok
+   [37/340]  0.65s automation ok
+   [38/340]  0.66s automation ok
+   [39/340]  0.66s automation ok
+   [40/340]  0.66s automation ok
+   [41/340]  0.64s memory     ok
+   [42/340]  0.66s memory     ok
+   [43/340]  0.66s memory     ok
+   [44/340]  0.67s memory     ok
+   [45/340]  0.66s memory     ok
+   [46/340]  0.66s memory     ok
+   [47/340]  0.66s memory     ok
+   [48/340]  0.67s memory     ok
+   [49/340]  0.64s memory     ok
+   [50/340]  0.68s memory     ok
+   [51/340]  0.67s memory     ok
+   [52/340]  0.68s memory     ok
+   [53/340]  0.64s memory     ok
+   [54/340]  0.70s memory     ok
+   [55/340]  0.68s memory     ok
+   [56/340]  0.68s memory     ok
+   [57/340]  0.67s memory     ok
+   [58/340]  0.69s memory     ok
+   [59/340]  0.68s memory     ok
+   [60/340]  0.73s memory     ok
+   [61/340]  0.68s memory     ok
+   [62/340]  0.69s memory     ok
+   [63/340]  0.70s memory     ok
+   [64/340]  0.71s memory     ok
+   [65/340]  0.71s memory     ok
+   [66/340]  0.72s memory     ok
+   [67/340]  0.73s memory     ok
+   [68/340]  0.75s memory     ok
+   [69/340]  0.75s memory     ok
+   [70/340]  0.78s memory     ok
+   [71/340]  0.79s memory     ok
+   [72/340]  0.78s memory     ok
+   [73/340]  0.78s memory     ok
+   [74/340]  0.80s memory     ok
+   [75/340]  0.83s memory     ok
+   [76/340]  0.83s memory     ok
+   [77/340]  0.84s memory     ok
+   [78/340]  0.86s memory     ok
+   [79/340]  0.88s memory     ok
+   [80/340]  0.85s memory     ok
+   [81/340]  0.89s code       ok
+   [82/340]  0.90s code       ok
+   [83/340]  0.87s code       ok
+   [84/340]  0.90s code       ok
+   [85/340]  0.91s code       ok
+   [86/340]  0.91s code       ok
+   [87/340]  0.90s code       ok
+   [88/340]  0.92s code       ok
+   [89/340]  0.92s code       ok
+   [90/340]  0.90s code       ok
+   [91/340]  0.93s code       ok
+   [92/340]  0.93s code       ok
+   [93/340]  0.91s code       ok
+   [94/340]  0.94s code       ok
+   [95/340]  0.93s code       ok
+   [96/340]  0.94s code       ok
+   [97/340]  0.97s code       ok
+   [98/340]  0.98s code       ok
+   [99/340]  0.97s code       ok
+   [100/340]  0.98s code       ok
+   [101/340]  1.00s code       ok
+   [102/340]  0.98s code       ok
+   [103/340]  0.97s code       ok
+   [104/340]  0.99s code       ok
+   [105/340]  1.00s code       ok
+   [106/340]  1.00s code       ok
+   [107/340]  1.04s code       ok
+   [108/340]  1.04s code       ok
+   [109/340]  1.05s code       MISS (qa)
+   [110/340]  1.06s code       ok
+   [111/340]  1.05s code       ok
+   [112/340]  1.06s code       ok
+   [113/340]  1.10s code       ok
+   [114/340]  1.06s code       ok
+   [115/340]  1.12s code       ok
+   [116/340]  1.13s code       ok
+   [117/340]  1.09s code       MISS (task)
+   [118/340]  1.12s code       ok
+   [119/340]  1.10s code       ok
+   [120/340]  1.10s code       ok
+   [121/340]  1.10s code       ok
+   [122/340]  1.09s task       ok
+   [123/340]  1.11s task       ok
+   [124/340]  1.11s task       ok
+   [125/340]  1.07s task       ok
+   [126/340]  1.11s task       ok
+   [127/340]  1.11s task       ok
+   [128/340]  1.09s task       ok
+   [129/340]  1.12s task       ok
+   [130/340]  1.13s task       ok
+   [131/340]  1.22s task       ok
+   [132/340]  1.27s task       ok
+   [133/340]  1.21s task       ok
+   [134/340]  1.21s task       ok
+   [135/340]  1.16s task       ok
+   [136/340]  1.14s task       ok
+   [137/340]  1.17s task       ok
+   [138/340]  1.13s task       ok
+   [139/340]  1.19s task       ok
+   [140/340]  1.16s task       ok
+   [141/340]  1.13s task       MISS (memory)
+   [142/340]  1.14s task       ok
+   [143/340]  1.12s task       ok
+   [144/340]  1.14s task       ok
+   [145/340]  0.97s task       ok
+   [146/340]  1.06s task       ok
+   [147/340]  1.19s task       MISS (planner)
+   [148/340]  1.11s task       ok
+   [149/340]  1.10s task       ok
+   [150/340]  1.09s task       ok
+   [151/340]  1.10s task       ok
+   [152/340]  1.10s task       ok
+   [153/340]  1.11s task       ok
+   [154/340]  1.06s task       ok
+   [155/340]  1.13s task       ok
+   [156/340]  1.12s task       ok
+   [157/340]  1.08s task       ok
+   [158/340]  1.11s task       ok
+   [159/340]  1.10s task       ok
+   [160/340]  1.09s task       ok
+   [161/340]  1.11s task       ok
+   [162/340]  1.07s qa         ok
+   [163/340]  1.00s qa         MISS (planner)
+   [164/340]  1.09s qa         ok
+   [165/340]  1.06s qa         ok
+   [166/340]  1.10s qa         ok
+   [167/340]  1.10s qa         ok
+   [168/340]  1.04s qa         ok
+   [169/340]  1.11s qa         ok
+   [170/340]  1.09s qa         MISS (memory)
+   [171/340]  1.07s qa         ok
+   [172/340]  1.10s qa         ok
+   [173/340]  1.07s qa         ok
+   [174/340]  0.91s qa         MISS (task)
+   [175/340]  1.08s qa         ok
+   [176/340]  1.07s qa         ok
+   [177/340]  1.05s qa         ok
+   [178/340]  1.08s qa         ok
+   [179/340]  1.05s qa         ok
+   [180/340]  1.06s qa         MISS (memory)
+   [181/340]  1.09s qa         ok
+   [182/340]  1.03s qa         ok
+   [183/340]  0.94s qa         MISS (project)
+   [184/340]  1.09s qa         ok
+   [185/340]  1.04s qa         ok
+   [186/340]  1.08s qa         ok
+   [187/340]  1.08s qa         MISS (project)
+   [188/340]  1.05s qa         ok
+   [189/340]  1.05s qa         ok
+   [190/340]  1.05s qa         ok
+   [191/340]  1.04s qa         ok
+   [192/340]  1.07s qa         MISS (task)
+   [193/340]  1.04s qa         ok
+   [194/340]  0.89s qa         MISS (code)
+   [195/340]  1.05s qa         ok
+   [196/340]  0.95s qa         MISS (ingest)
+   [197/340]  1.03s qa         ok
+   [198/340]  1.11s qa         MISS (memory)
+   [199/340]  0.97s qa         MISS (task)
+   [200/340]  1.17s qa         ok
+   [201/340]  1.18s qa         ok
+   [202/340]  1.08s source     ok
+   [203/340]  1.13s source     ok
+   [204/340]  1.11s source     ok
+   [205/340]  0.90s source     ok
+   [206/340]  0.93s source     ok
+   [207/340]  1.08s source     ok
+   [208/340]  1.08s source     ok
+   [209/340]  1.24s source     ok
+   [210/340]  1.11s source     ok
+   [211/340]  1.41s source     ok
+   [212/340]  1.44s source     ok
+   [213/340]  1.38s source     ok
+   [214/340]  1.45s source     ok
+   [215/340]  1.27s source     ok
+   [216/340]  1.54s source     ok
+   [217/340]  1.84s source     ok
+   [218/340]  1.73s source     ok
+   [219/340]  1.14s source     ok
+   [220/340]  1.48s source     ok
+   [221/340]  1.25s source     ok
+   [222/340]  2.02s source     ok
+   [223/340]  2.37s source     ok
+   [224/340]  3.74s source     ok
+   [225/340]  0.89s source     ok
+   [226/340]  0.74s source     ok
+   [227/340]  1.11s source     ok
+   [228/340]  2.37s source     ok
+   [229/340]  1.94s source     ok
+   [230/340]  0.92s source     ok
+   [231/340]  1.30s source     ok
+   [232/340]  1.40s source     ok
+   [233/340]  1.67s source     ok
+   [234/340]  1.47s source     ok
+   [235/340]  1.56s source     ok
+   [236/340]  1.40s source     ok
+   [237/340]  1.40s source     ok
+   [238/340]  1.52s source     MISS (ingest)
+   [239/340]  1.49s source     ok
+   [240/340]  1.16s ingest     ok
+   [241/340]  1.39s ingest     ok
+   [242/340]  1.39s ingest     ok
+   [243/340]  1.14s ingest     ok
+   [244/340]  1.49s ingest     ok
+   [245/340]  1.42s ingest     ok
+   [246/340]  1.51s ingest     ok
+   [247/340]  1.50s ingest     ok
+   [248/340]  1.51s ingest     ok
+   [249/340]  1.41s ingest     ok
+   [250/340]  1.47s ingest     ok
+   [251/340]  1.36s ingest     ok
+   [252/340]  1.22s ingest     ok
+   [253/340]  1.34s ingest     ok
+   [254/340]  1.37s ingest     ok
+   [255/340]  1.34s ingest     ok
+   [256/340]  1.29s ingest     ok
+   [257/340]  1.20s ingest     ok
+   [258/340]  1.37s ingest     ok
+   [259/340]  1.93s ingest     ok
+   [260/340]  1.69s ingest     ok
+   [261/340]  1.46s ingest     ok
+   [262/340]  1.12s ingest     ok
+   [263/340]  1.31s ingest     ok
+   [264/340]  1.36s ingest     ok
+   [265/340]  1.18s ingest     ok
+   [266/340]  1.20s ingest     ok
+   [267/340]  1.20s ingest     ok
+   [268/340]  1.30s ingest     ok
+   [269/340]  1.38s ingest     ok
+   [270/340]  1.36s ingest     ok
+   [271/340]  1.19s ingest     ok
+   [272/340]  1.41s ingest     ok
+   [273/340]  1.25s project    ok
+   [274/340]  1.23s project    ok
+   [275/340]  1.18s project    ok
+   [276/340]  1.17s project    ok
+   [277/340]  1.11s project    ok
+   [278/340]  1.11s project    ok
+   [279/340]  1.11s project    ok
+   [280/340]  1.12s project    ok
+   [281/340]  1.11s project    ok
+   [282/340]  1.09s project    ok
+   [283/340]  1.08s project    ok
+   [284/340]  1.08s project    ok
+   [285/340]  1.08s project    ok
+   [286/340]  1.08s project    ok
+   [287/340]  1.10s project    ok
+   [288/340]  1.13s project    ok
+   [289/340]  1.17s project    ok
+   [290/340]  1.28s project    ok
+   [291/340]  1.29s project    ok
+   [292/340]  1.29s project    ok
+   [293/340]  1.09s project    ok
+   [294/340]  1.14s project    ok
+   [295/340]  1.12s project    ok
+   [296/340]  1.10s project    ok
+   [297/340]  1.12s project    ok
+   [298/340]  1.12s project    ok
+   [299/340]  1.13s project    ok
+   [300/340]  1.12s project    ok
+   [301/340]  1.11s project    ok
+   [302/340]  1.09s project    ok
+   [303/340]  1.08s project    ok
+   [304/340]  1.08s project    ok
+   [305/340]  1.08s project    MISS (memory)
+   [306/340]  1.08s project    ok
+   [307/340]  1.10s project    ok
+   [308/340]  1.11s project    ok
+   [309/340]  1.23s project    ok
+   [310/340]  1.16s project    ok
+   [311/340]  1.35s planner    ok
+   [312/340]  1.28s planner    ok
+   [313/340]  1.22s planner    ok
+   [314/340]  1.19s planner    ok
+   [315/340]  1.16s planner    ok
+   [316/340]  1.16s planner    ok
+   [317/340]  1.16s planner    ok
+   [318/340]  1.16s planner    ok
+   [319/340]  1.16s planner    ok
+   [320/340]  1.16s planner    ok
+   [321/340]  1.12s planner    ok
+   [322/340]  1.13s planner    ok
+   [323/340]  1.13s planner    ok
+   [324/340]  1.18s planner    ok
+   [325/340]  1.23s planner    ok
+   [326/340]  1.26s planner    ok
+   [327/340]  1.28s planner    ok
+   [328/340]  1.27s planner    ok
+   [329/340]  1.25s planner    ok
+   [330/340]  1.21s planner    ok
+   [331/340]  1.19s planner    ok
+   [332/340]  1.18s planner    ok
+   [333/340]  1.19s planner    ok
+   [334/340]  1.19s planner    ok
+   [335/340]  1.20s planner    ok
+   [336/340]  1.19s planner    ok
+   [337/340]  1.18s planner    ok
+   [338/340]  1.18s planner    ok
+   [339/340]  1.18s planner    ok
+   [340/340]  1.18s planner    ok
+
+# Router results (n = 340)
+
+| System | n | Acc | 95% CI | Macro-F1 | canonical | paraphrase | hard | LLM calls | p50 s | p95 s |
+|---|---|---|---|---|---|---|---|---|---|---|
+| rules[full] | 340 | 0.491 | 0.438-0.544 | 0.587 | 1.000 | 0.111 | 0.532 | 0.00 | 0.0000 | 0.0000 |
+| rules[precise] | 340 | 0.374 | 0.318-0.424 | 0.463 | 0.741 | 0.111 | 0.380 | 0.00 | 0.0000 | 0.0000 |
+| qwen3-4b__definitions__constrained | 340 | 0.906 | 0.876-0.935 | 0.901 | 0.954 | 0.908 | 0.835 | 1.00 | 1.2024 | 1.8872 |
+| hybrid[full+qwen3-4b__definitions__constrained] | 340 | 0.853 | 0.818-0.888 | 0.854 | 1.000 | 0.804 | 0.747 | 0.41 | 0.0000 | 1.6073 |
+| hybrid[precise+qwen3-4b__definitions__constrained] | 340 | 0.894 | 0.862-0.926 | 0.888 | 0.944 | 0.895 | 0.823 | 0.60 | 0.5798 | 1.7973 |
+| qwen3-4b__few_shot__constrained | 340 | 0.950 | 0.926-0.974 | 0.950 | 0.972 | 0.961 | 0.899 | 1.00 | 1.0902 | 1.4895 |
+| hybrid[full+qwen3-4b__few_shot__constrained] | 340 | 0.882 | 0.847-0.918 | 0.886 | 1.000 | 0.856 | 0.772 | 0.41 | 0.0000 | 1.4044 |
+| hybrid[precise+qwen3-4b__few_shot__constrained] | 340 | 0.932 | 0.906-0.959 | 0.932 | 0.963 | 0.948 | 0.861 | 0.60 | 0.6544 | 1.4579 |
+| qwen3-4b__zero_shot__constrained | 340 | 0.526 | 0.471-0.582 | 0.480 | 0.611 | 0.490 | 0.481 | 1.00 | 1.3477 | 2.0126 |
+| hybrid[full+qwen3-4b__zero_shot__constrained] | 340 | 0.665 | 0.615-0.718 | 0.662 | 1.000 | 0.458 | 0.608 | 0.41 | 0.0000 | 1.5745 |
+| hybrid[precise+qwen3-4b__zero_shot__constrained] | 340 | 0.629 | 0.576-0.682 | 0.606 | 0.843 | 0.503 | 0.582 | 0.60 | 1.1915 | 1.6578 |
+| tfidf_logreg_cv5 | 340 | 0.926 | 0.897-0.953 | 0.925 | 0.981 | 0.915 | 0.873 | 0.00 | 0.0008 | 0.0014 |
+| hybrid[full+tfidf_logreg_cv5] | 340 | 0.862 | 0.824-0.900 | 0.863 | 1.000 | 0.824 | 0.747 | 0.41 | 0.0000 | 0.0013 |
+| hybrid[precise+tfidf_logreg_cv5] | 340 | 0.915 | 0.882-0.944 | 0.914 | 0.981 | 0.902 | 0.848 | 0.60 | 0.0006 | 0.0013 |
+
+rules[full]: coverage 0.594, precision when a rule fires 0.827
+
+rules[precise]: coverage 0.403, precision when a rule fires 0.927
+
+## Paired McNemar tests
+
+| Comparison | hybrid-only correct | base-only correct | p |
+|---|---|---|---|
+| hybrid[full+qwen3-4b__definitions__constrained] vs qwen3-4b__definitions__constrained | 15 | 33 | 0.01328 |
+| hybrid[precise+qwen3-4b__definitions__constrained] vs qwen3-4b__definitions__constrained | 5 | 9 | 0.424 |
+| hybrid[full+qwen3-4b__few_shot__constrained] vs qwen3-4b__few_shot__constrained | 10 | 33 | 0.0006061 |
+| hybrid[precise+qwen3-4b__few_shot__constrained] vs qwen3-4b__few_shot__constrained | 3 | 9 | 0.146 |
+| hybrid[full+qwen3-4b__zero_shot__constrained] vs qwen3-4b__zero_shot__constrained | 67 | 20 | 4.305e-07 |
+| hybrid[precise+qwen3-4b__zero_shot__constrained] vs qwen3-4b__zero_shot__constrained | 40 | 5 | 7.878e-08 |
+| hybrid[full+tfidf_logreg_cv5] vs tfidf_logreg_cv5 | 8 | 30 | 0.000472 |
+| hybrid[precise+tfidf_logreg_cv5] vs tfidf_logreg_cv5 | 3 | 7 | 0.3438 |
+
+
+== qwen3-4b__zero_shot__free: 0 done, 18 to go
+   warm-up 143.0s
+   [1/18] 66.74s automation MISS (task)
+   [2/18] 85.81s automation MISS (code)
+   [3/18] 34.90s memory     ok
+   [4/18] 119.31s memory     ok
+   [5/18] 334.10s code       ok
+   [6/18] 275.12s code       MISS (source)
+   [7/18] 55.51s task       ok
+   [8/18] 75.77s task       ok
+   [9/18] 32.28s qa         MISS (ingest)
+   [10/18] 20.59s qa         MISS (planner)
+   [11/18] 60.43s source     ok
+   [12/18] 68.07s source     ok
+   [13/18] 67.61s ingest     ok
+   [14/18] 67.96s ingest     ok
+   [15/18] 46.90s project    ok
+   [16/18] 27.82s project    ok
+   [17/18] 278.03s planner    MISS (task)
+   [18/18] 147.62s planner    ok
+
+# Router results (n = 340)
+
+| System | n | Acc | 95% CI | Macro-F1 | canonical | paraphrase | hard | LLM calls | p50 s | p95 s |
+|---|---|---|---|---|---|---|---|---|---|---|
+| rules[full] | 340 | 0.491 | 0.438-0.544 | 0.587 | 1.000 | 0.111 | 0.532 | 0.00 | 0.0000 | 0.0000 |
+| rules[precise] | 340 | 0.374 | 0.318-0.424 | 0.463 | 0.741 | 0.111 | 0.380 | 0.00 | 0.0000 | 0.0000 |
+| qwen3-4b__definitions__constrained | 340 | 0.906 | 0.876-0.935 | 0.901 | 0.954 | 0.908 | 0.835 | 1.00 | 1.2024 | 1.8872 |
+| hybrid[full+qwen3-4b__definitions__constrained] | 340 | 0.853 | 0.818-0.888 | 0.854 | 1.000 | 0.804 | 0.747 | 0.41 | 0.0000 | 1.6073 |
+| hybrid[precise+qwen3-4b__definitions__constrained] | 340 | 0.894 | 0.862-0.926 | 0.888 | 0.944 | 0.895 | 0.823 | 0.60 | 0.5798 | 1.7973 |
+| qwen3-4b__few_shot__constrained | 340 | 0.950 | 0.926-0.974 | 0.950 | 0.972 | 0.961 | 0.899 | 1.00 | 1.0902 | 1.4895 |
+| hybrid[full+qwen3-4b__few_shot__constrained] | 340 | 0.882 | 0.847-0.918 | 0.886 | 1.000 | 0.856 | 0.772 | 0.41 | 0.0000 | 1.4044 |
+| hybrid[precise+qwen3-4b__few_shot__constrained] | 340 | 0.932 | 0.906-0.959 | 0.932 | 0.963 | 0.948 | 0.861 | 0.60 | 0.6544 | 1.4579 |
+| qwen3-4b__zero_shot__constrained | 340 | 0.526 | 0.471-0.582 | 0.480 | 0.611 | 0.490 | 0.481 | 1.00 | 1.3477 | 2.0126 |
+| hybrid[full+qwen3-4b__zero_shot__constrained] | 340 | 0.665 | 0.615-0.718 | 0.662 | 1.000 | 0.458 | 0.608 | 0.41 | 0.0000 | 1.5745 |
+| hybrid[precise+qwen3-4b__zero_shot__constrained] | 340 | 0.629 | 0.576-0.682 | 0.606 | 0.843 | 0.503 | 0.582 | 0.60 | 1.1915 | 1.6578 |
+| qwen3-4b__zero_shot__free | 18 | 0.667 | 0.444-0.889 | 0.585 | 0.667 | nan | nan | 1.00 | 67.7818 | 286.4429 |
+| hybrid[full+qwen3-4b__zero_shot__free] | 18 | 1.000 | 1.000-1.000 | 1.000 | 1.000 | nan | nan | 0.00 | 0.0000 | 0.0000 |
+| hybrid[precise+qwen3-4b__zero_shot__free] | 18 | 0.778 | 0.556-0.944 | 0.689 | 0.778 | nan | nan | 0.22 | 0.0000 | 69.6020 |
+| tfidf_logreg_cv5 | 340 | 0.926 | 0.897-0.953 | 0.925 | 0.981 | 0.915 | 0.873 | 0.00 | 0.0009 | 0.0016 |
+| hybrid[full+tfidf_logreg_cv5] | 340 | 0.862 | 0.824-0.900 | 0.863 | 1.000 | 0.824 | 0.747 | 0.41 | 0.0000 | 0.0014 |
+| hybrid[precise+tfidf_logreg_cv5] | 340 | 0.915 | 0.882-0.944 | 0.914 | 0.981 | 0.902 | 0.848 | 0.60 | 0.0008 | 0.0014 |
+
+rules[full]: coverage 0.594, precision when a rule fires 0.827
+
+rules[precise]: coverage 0.403, precision when a rule fires 0.927
+
+## Paired McNemar tests
+
+| Comparison | hybrid-only correct | base-only correct | p |
+|---|---|---|---|
+| hybrid[full+qwen3-4b__definitions__constrained] vs qwen3-4b__definitions__constrained | 15 | 33 | 0.01328 |
+| hybrid[precise+qwen3-4b__definitions__constrained] vs qwen3-4b__definitions__constrained | 5 | 9 | 0.424 |
+| hybrid[full+qwen3-4b__few_shot__constrained] vs qwen3-4b__few_shot__constrained | 10 | 33 | 0.0006061 |
+| hybrid[precise+qwen3-4b__few_shot__constrained] vs qwen3-4b__few_shot__constrained | 3 | 9 | 0.146 |
+| hybrid[full+qwen3-4b__zero_shot__constrained] vs qwen3-4b__zero_shot__constrained | 67 | 20 | 4.305e-07 |
+| hybrid[precise+qwen3-4b__zero_shot__constrained] vs qwen3-4b__zero_shot__constrained | 40 | 5 | 7.878e-08 |
+| hybrid[full+tfidf_logreg_cv5] vs tfidf_logreg_cv5 | 8 | 30 | 0.000472 |
+| hybrid[precise+tfidf_logreg_cv5] vs tfidf_logreg_cv5 | 3 | 7 | 0.3438 |
+

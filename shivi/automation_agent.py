@@ -1,27 +1,24 @@
-from shivi.desktop_tools import *
+from shivi.desktop_tools import open_chrome, open_safari, open_url, open_vscode, open_whatsapp
+
+# Checked in order; first keyword found in the request wins.
+OPEN_ACTIONS = (
+    (("vscode", "vs code", "visual studio code"), open_vscode),
+    (("youtube",), lambda: open_url("https://youtube.com")),
+    (("chrome",), open_chrome),
+    (("safari",), open_safari),
+    (("whatsapp",), open_whatsapp),
+)
+
 
 def handle_open_commands(command):
-    if "vscode" in command:
-        open_vscode()
-        return
-    elif "chrome" in command:
-        open_chrome()
-        return
-    elif "youtube" in command:
-            open_url("https://youtube.com")
-            return
-    elif "safari" in command:
-            open_safari()
-            return
-    elif "whatsapp" in command:
-            open_whatsapp()
-            return
-    elif "netmirror" in command:
-            open_chrome("netmirror")
-            return
-    else:
-        print("Unknown command")
+    command = command.lower()
+    for keywords, action in OPEN_ACTIONS:
+        if any(keyword in command for keyword in keywords):
+            action()
+            return True
+    print("Unknown command")
+    return False
+
 
 def process_automation(request):
-      handle_open_commands(request)
-    
+    handle_open_commands(request)

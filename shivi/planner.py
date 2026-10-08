@@ -11,7 +11,7 @@ def get_work_today():
 
 def process_planner_request(request):
     command = request.lower().strip()
-    if("what should i work on today") in command:
+    if any(phrase in command for phrase in ("what should i work on", "plan my day", "plan for today")):
         get_work_today()
         return
     print("Unknown Planner Command")
