@@ -27,7 +27,6 @@ def erase_memory(key):
     return False
 
 def get_memory(key):
-    print("Here's what I found")
     memory = load_memory()
     return memory.get(
         key,
@@ -46,9 +45,10 @@ def process_memory_request(command):
         )
         remember(key.strip(),value.strip())
         print(f"Remembered {key} = {value}")
-    elif command.lower().startswith("what is"):
+    elif command.startswith(("what is", "what's", "recall")):
 
-        key = command[7:].strip()
+        key = command.split(maxsplit=1)[1] if command.startswith(("what's", "recall")) else command[7:]
+        key = key.strip().rstrip("?").strip()
 
         value = get_memory(key)
 
@@ -63,7 +63,7 @@ def process_memory_request(command):
 
     elif command.lower().startswith("forget"):
 
-        key = command[6:].strip()
+        key = command[6:].strip().rstrip("?.").strip()
 
         if erase_memory(key):
             print(

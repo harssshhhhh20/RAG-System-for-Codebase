@@ -17,6 +17,12 @@ db/
 data/
 storage/
 
+# Backups written by SHIVI before edits
+*.bak
+
+# Scratch experiment runs (named runs under results/ are kept as evidence)
+results/**/_*/
+
 # VS Code
 .vscode/
 

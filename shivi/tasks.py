@@ -207,16 +207,25 @@ def process_task_request(command):
 
     command = command.strip().lower()
 
+    if command in ("show tasks", "list tasks"):
+
+        active = get_active_tasks()
+
+        if not active:
+            print("No active tasks.")
+
+        for project, task in active:
+            print(f"{project} --> {task}")
+
+        return
+
     if command.startswith(
-        "show tasks for "
+        ("show tasks for ", "list tasks for ")
     ):
 
         project = (
             command
-            .replace(
-                "show tasks for ",
-                ""
-            )
+            .split(" for ", 1)[1]
             .strip()
         )
 

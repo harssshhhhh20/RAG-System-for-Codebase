@@ -1,0 +1,2172 @@
+{
+  "n": 340,
+  "systems": {
+    "rules[full]": {
+      "system": "rules[full]",
+      "n": 340,
+      "accuracy": 0.49117647058823527,
+      "accuracy_ci95": [
+        0.43823529411764706,
+        0.5441176470588235
+      ],
+      "macro_f1": 0.5866961895482098,
+      "per_subset_accuracy": {
+        "canonical": 1.0,
+        "hard": 0.5316455696202531,
+        "paraphrase": 0.1111111111111111
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.6785714285714286,
+          "recall": 0.475,
+          "f1": 0.5588235294117648,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.84,
+          "recall": 0.525,
+          "f1": 0.6461538461538462,
+          "support": 40
+        },
+        "code": {
+          "precision": 1.0,
+          "recall": 0.9024390243902439,
+          "f1": 0.9487179487179488,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5,
+          "f1": 0.625,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.5384615384615384,
+          "recall": 0.525,
+          "f1": 0.5316455696202531,
+          "support": 40
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 0.47368421052631576,
+          "f1": 0.6428571428571429,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 1.0,
+          "recall": 0.15151515151515152,
+          "f1": 0.2631578947368421,
+          "support": 33
+        },
+        "project": {
+          "precision": 1.0,
+          "recall": 0.47368421052631576,
+          "f1": 0.6428571428571429,
+          "support": 38
+        },
+        "planner": {
+          "precision": 1.0,
+          "recall": 0.26666666666666666,
+          "f1": 0.4210526315789474,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 2.100232043577468e-06,
+        "p50_s": 1.915963366627693e-06,
+        "p95_s": 3.754231147468091e-06,
+        "max_s": 6.720796227455139e-05
+      },
+      "confusion": {
+        "automation": {
+          "automation": 19,
+          "none": 21
+        },
+        "memory": {
+          "memory": 21,
+          "none": 16,
+          "qa": 3
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 20,
+          "none": 17,
+          "qa": 3
+        },
+        "qa": {
+          "qa": 21,
+          "none": 18,
+          "task": 1
+        },
+        "source": {
+          "source": 18,
+          "none": 14,
+          "qa": 3,
+          "memory": 1,
+          "automation": 2
+        },
+        "ingest": {
+          "ingest": 5,
+          "none": 25,
+          "automation": 3
+        },
+        "project": {
+          "project": 18,
+          "qa": 4,
+          "none": 11,
+          "memory": 1,
+          "automation": 4
+        },
+        "planner": {
+          "planner": 8,
+          "none": 16,
+          "qa": 5,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.0,
+      "coverage": 0.5941176470588235,
+      "precision_when_fired": 0.8267326732673267
+    },
+    "rules[precise]": {
+      "system": "rules[precise]",
+      "n": 340,
+      "accuracy": 0.3735294117647059,
+      "accuracy_ci95": [
+        0.3176470588235294,
+        0.4235294117647059
+      ],
+      "macro_f1": 0.4628976286871024,
+      "per_subset_accuracy": {
+        "canonical": 0.7407407407407407,
+        "hard": 0.379746835443038,
+        "paraphrase": 0.1111111111111111
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.84,
+          "recall": 0.525,
+          "f1": 0.6461538461538462,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.9487179487179487,
+          "recall": 0.9024390243902439,
+          "f1": 0.9249999999999999,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5,
+          "f1": 0.625,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 40
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 0.47368421052631576,
+          "f1": 0.6428571428571429,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 1.0,
+          "recall": 0.15151515151515152,
+          "f1": 0.2631578947368421,
+          "support": 33
+        },
+        "project": {
+          "precision": 1.0,
+          "recall": 0.47368421052631576,
+          "f1": 0.6428571428571429,
+          "support": 38
+        },
+        "planner": {
+          "precision": 1.0,
+          "recall": 0.26666666666666666,
+          "f1": 0.4210526315789474,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 2.008089658749454e-06,
+        "p50_s": 2.124928869307041e-06,
+        "p95_s": 3.7122576031833895e-06,
+        "max_s": 6.375019438564777e-06
+      },
+      "confusion": {
+        "automation": {
+          "none": 40
+        },
+        "memory": {
+          "memory": 21,
+          "none": 19
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 20,
+          "none": 20
+        },
+        "qa": {
+          "none": 37,
+          "code": 2,
+          "task": 1
+        },
+        "source": {
+          "source": 18,
+          "none": 19,
+          "memory": 1
+        },
+        "ingest": {
+          "ingest": 5,
+          "none": 28
+        },
+        "project": {
+          "project": 18,
+          "none": 19,
+          "memory": 1
+        },
+        "planner": {
+          "planner": 8,
+          "none": 21,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.0,
+      "coverage": 0.40294117647058825,
+      "precision_when_fired": 0.927007299270073
+    },
+    "qwen3-4b__definitions__constrained": {
+      "system": "qwen3-4b__definitions__constrained",
+      "n": 340,
+      "accuracy": 0.9058823529411765,
+      "accuracy_ci95": [
+        0.8764705882352941,
+        0.9352941176470588
+      ],
+      "macro_f1": 0.9007278072999468,
+      "per_subset_accuracy": {
+        "canonical": 0.9537037037037037,
+        "hard": 0.8354430379746836,
+        "paraphrase": 0.9084967320261438
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.975609756097561,
+          "recall": 1.0,
+          "f1": 0.9876543209876543,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.9069767441860465,
+          "recall": 0.975,
+          "f1": 0.9397590361445783,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.95,
+          "recall": 0.926829268292683,
+          "f1": 0.9382716049382716,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.918918918918919,
+          "recall": 0.85,
+          "f1": 0.8831168831168831,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.9166666666666666,
+          "recall": 0.55,
+          "f1": 0.6874999999999999,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.926829268292683,
+          "recall": 1.0,
+          "f1": 0.9620253164556963,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.8108108108108109,
+          "recall": 0.9090909090909091,
+          "f1": 0.8571428571428571,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.8604651162790697,
+          "recall": 0.9736842105263158,
+          "f1": 0.9135802469135803,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.8823529411764706,
+          "recall": 1.0,
+          "f1": 0.9375,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 1.1372169447056126,
+        "p50_s": 1.2024133954546414,
+        "p95_s": 1.8872284672805109,
+        "max_s": 2.4567183749750257
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 39,
+          "qa": 1
+        },
+        "code": {
+          "code": 38,
+          "qa": 1,
+          "task": 1,
+          "ingest": 1
+        },
+        "task": {
+          "task": 34,
+          "planner": 3,
+          "project": 2,
+          "memory": 1
+        },
+        "qa": {
+          "ingest": 6,
+          "planner": 1,
+          "code": 2,
+          "qa": 22,
+          "project": 4,
+          "memory": 3,
+          "task": 1,
+          "automation": 1
+        },
+        "source": {
+          "source": 38
+        },
+        "ingest": {
+          "ingest": 30,
+          "source": 3
+        },
+        "project": {
+          "project": 37,
+          "task": 1
+        },
+        "planner": {
+          "planner": 30
+        }
+      },
+      "llm_call_rate": 1.0,
+      "parse_failures": 0,
+      "mean_output_tokens": 10.620588235294118
+    },
+    "hybrid[full+qwen3-4b__definitions__constrained]": {
+      "system": "hybrid[full+qwen3-4b__definitions__constrained]",
+      "n": 340,
+      "accuracy": 0.8529411764705882,
+      "accuracy_ci95": [
+        0.8176470588235294,
+        0.888235294117647
+      ],
+      "macro_f1": 0.8541023727305987,
+      "per_subset_accuracy": {
+        "canonical": 1.0,
+        "hard": 0.7468354430379747,
+        "paraphrase": 0.803921568627451
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.888888888888889,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8604651162790697,
+          "recall": 0.925,
+          "f1": 0.891566265060241,
+          "support": 40
+        },
+        "code": {
+          "precision": 1.0,
+          "recall": 0.9024390243902439,
+          "f1": 0.9487179487179488,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8,
+          "f1": 0.8421052631578948,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.64,
+          "recall": 0.8,
+          "f1": 0.7111111111111111,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.9142857142857143,
+          "recall": 0.8421052631578947,
+          "f1": 0.8767123287671234,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.9,
+          "recall": 0.8181818181818182,
+          "f1": 0.8571428571428572,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.90625,
+          "recall": 0.7631578947368421,
+          "f1": 0.8285714285714286,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8,
+          "f1": 0.8421052631578948,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.44459321063614504,
+        "p50_s": 2.1044397726655006e-06,
+        "p95_s": 1.6073003631201574,
+        "max_s": 2.3021906259236857
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 37,
+          "qa": 3
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 32,
+          "planner": 3,
+          "project": 1,
+          "memory": 1,
+          "qa": 3
+        },
+        "qa": {
+          "qa": 32,
+          "ingest": 3,
+          "memory": 1,
+          "project": 2,
+          "task": 1,
+          "automation": 1
+        },
+        "source": {
+          "source": 32,
+          "qa": 3,
+          "memory": 1,
+          "automation": 2
+        },
+        "ingest": {
+          "ingest": 27,
+          "source": 3,
+          "automation": 3
+        },
+        "project": {
+          "project": 29,
+          "qa": 4,
+          "memory": 1,
+          "automation": 4
+        },
+        "planner": {
+          "planner": 24,
+          "qa": 5,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.40588235294117647
+    },
+    "hybrid[precise+qwen3-4b__definitions__constrained]": {
+      "system": "hybrid[precise+qwen3-4b__definitions__constrained]",
+      "n": 340,
+      "accuracy": 0.8941176470588236,
+      "accuracy_ci95": [
+        0.861764705882353,
+        0.9264705882352942
+      ],
+      "macro_f1": 0.8878365001722816,
+      "per_subset_accuracy": {
+        "canonical": 0.9444444444444444,
+        "hard": 0.8227848101265823,
+        "paraphrase": 0.8954248366013072
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.975609756097561,
+          "recall": 1.0,
+          "f1": 0.9876543209876543,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1": 0.9090909090909091,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.9024390243902439,
+          "recall": 0.9024390243902439,
+          "f1": 0.9024390243902439,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8717948717948718,
+          "recall": 0.85,
+          "f1": 0.8607594936708861,
+          "support": 40
+        },
+        "qa": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.925,
+          "recall": 0.9736842105263158,
+          "f1": 0.9487179487179489,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.8333333333333334,
+          "recall": 0.9090909090909091,
+          "f1": 0.8695652173913043,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.8809523809523809,
+          "recall": 0.9736842105263158,
+          "f1": 0.925,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.8787878787878788,
+          "recall": 0.9666666666666667,
+          "f1": 0.9206349206349207,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.6787979678730206,
+        "p50_s": 0.5797619794611819,
+        "p95_s": 1.7973078597686254,
+        "max_s": 2.456721374997869
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 40
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 34,
+          "planner": 3,
+          "project": 2,
+          "memory": 1
+        },
+        "qa": {
+          "ingest": 6,
+          "planner": 1,
+          "code": 4,
+          "qa": 20,
+          "project": 3,
+          "memory": 3,
+          "task": 2,
+          "automation": 1
+        },
+        "source": {
+          "source": 37,
+          "memory": 1
+        },
+        "ingest": {
+          "ingest": 30,
+          "source": 3
+        },
+        "project": {
+          "project": 37,
+          "memory": 1
+        },
+        "planner": {
+          "planner": 29,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.5970588235294118
+    },
+    "qwen3-4b__few_shot__constrained": {
+      "system": "qwen3-4b__few_shot__constrained",
+      "n": 340,
+      "accuracy": 0.95,
+      "accuracy_ci95": [
+        0.9264705882352942,
+        0.9735294117647059
+      ],
+      "macro_f1": 0.949508436544325,
+      "per_subset_accuracy": {
+        "canonical": 0.9722222222222222,
+        "hard": 0.8987341772151899,
+        "paraphrase": 0.9607843137254902
+      },
+      "per_label": {
+        "automation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1": 0.9411764705882353,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.975,
+          "recall": 0.9512195121951219,
+          "f1": 0.9629629629629629,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.9047619047619048,
+          "recall": 0.95,
+          "f1": 0.9268292682926829,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.9666666666666667,
+          "recall": 0.725,
+          "f1": 0.8285714285714285,
+          "support": 40
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 0.9736842105263158,
+          "f1": 0.9866666666666666,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.9428571428571428,
+          "recall": 1.0,
+          "f1": 0.9705882352941176,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9487179487179487,
+          "recall": 0.9736842105263158,
+          "f1": 0.9610389610389611,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.9375,
+          "recall": 1.0,
+          "f1": 0.967741935483871,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 1.063024864233825,
+        "p50_s": 1.0901905209757388,
+        "p95_s": 1.489526491885772,
+        "max_s": 3.7372907500248402
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 40
+        },
+        "code": {
+          "code": 39,
+          "qa": 1,
+          "task": 1
+        },
+        "task": {
+          "task": 38,
+          "memory": 1,
+          "planner": 1
+        },
+        "qa": {
+          "qa": 29,
+          "planner": 1,
+          "memory": 3,
+          "task": 3,
+          "project": 2,
+          "code": 1,
+          "ingest": 1
+        },
+        "source": {
+          "source": 37,
+          "ingest": 1
+        },
+        "ingest": {
+          "ingest": 33
+        },
+        "project": {
+          "project": 37,
+          "memory": 1
+        },
+        "planner": {
+          "planner": 30
+        }
+      },
+      "llm_call_rate": 1.0,
+      "parse_failures": 0,
+      "mean_output_tokens": 12.05
+    },
+    "hybrid[full+qwen3-4b__few_shot__constrained]": {
+      "system": "hybrid[full+qwen3-4b__few_shot__constrained]",
+      "n": 340,
+      "accuracy": 0.8823529411764706,
+      "accuracy_ci95": [
+        0.8470588235294118,
+        0.9176470588235294
+      ],
+      "macro_f1": 0.8856852959985598,
+      "per_subset_accuracy": {
+        "canonical": 1.0,
+        "hard": 0.7721518987341772,
+        "paraphrase": 0.8562091503267973
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.8163265306122449,
+          "recall": 1.0,
+          "f1": 0.898876404494382,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8604651162790697,
+          "recall": 0.925,
+          "f1": 0.891566265060241,
+          "support": 40
+        },
+        "code": {
+          "precision": 1.0,
+          "recall": 0.9024390243902439,
+          "f1": 0.9487179487179488,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8974358974358975,
+          "recall": 0.875,
+          "f1": 0.8860759493670887,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.6666666666666666,
+          "recall": 0.9,
+          "f1": 0.7659574468085106,
+          "support": 40
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 0.8421052631578947,
+          "f1": 0.9142857142857143,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 1.0,
+          "recall": 0.9090909090909091,
+          "f1": 0.9523809523809523,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9354838709677419,
+          "recall": 0.7631578947368421,
+          "f1": 0.8405797101449276,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.96,
+          "recall": 0.8,
+          "f1": 0.8727272727272728,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.44732278002398634,
+        "p50_s": 2.1044397726655006e-06,
+        "p95_s": 1.404424634744646,
+        "max_s": 3.7372937500476837
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 37,
+          "qa": 3
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 35,
+          "memory": 1,
+          "planner": 1,
+          "qa": 3
+        },
+        "qa": {
+          "qa": 36,
+          "memory": 1,
+          "project": 2,
+          "task": 1
+        },
+        "source": {
+          "source": 32,
+          "qa": 3,
+          "memory": 1,
+          "automation": 2
+        },
+        "ingest": {
+          "ingest": 30,
+          "automation": 3
+        },
+        "project": {
+          "project": 29,
+          "qa": 4,
+          "memory": 1,
+          "automation": 4
+        },
+        "planner": {
+          "planner": 24,
+          "qa": 5,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.40588235294117647
+    },
+    "hybrid[precise+qwen3-4b__few_shot__constrained]": {
+      "system": "hybrid[precise+qwen3-4b__few_shot__constrained]",
+      "n": 340,
+      "accuracy": 0.9323529411764706,
+      "accuracy_ci95": [
+        0.9058823529411765,
+        0.9588235294117647
+      ],
+      "macro_f1": 0.9320914501619249,
+      "per_subset_accuracy": {
+        "canonical": 0.9629629629629629,
+        "hard": 0.8607594936708861,
+        "paraphrase": 0.9477124183006536
+      },
+      "per_label": {
+        "automation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1": 0.9090909090909091,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.925,
+          "recall": 0.9024390243902439,
+          "f1": 0.9135802469135802,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8636363636363636,
+          "recall": 0.95,
+          "f1": 0.9047619047619048,
+          "support": 40
+        },
+        "qa": {
+          "precision": 1.0,
+          "recall": 0.675,
+          "f1": 0.8059701492537313,
+          "support": 40
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 0.9473684210526315,
+          "f1": 0.972972972972973,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.9428571428571428,
+          "recall": 1.0,
+          "f1": 0.9705882352941176,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9487179487179487,
+          "recall": 0.9736842105263158,
+          "f1": 0.9610389610389611,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.9354838709677419,
+          "recall": 0.9666666666666667,
+          "f1": 0.9508196721311476,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.6382760348171681,
+        "p50_s": 0.6544441250152886,
+        "p95_s": 1.457946943782736,
+        "max_s": 3.7372937080217525
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 40
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 38,
+          "memory": 1,
+          "planner": 1
+        },
+        "qa": {
+          "qa": 27,
+          "planner": 1,
+          "memory": 3,
+          "task": 3,
+          "code": 3,
+          "project": 2,
+          "ingest": 1
+        },
+        "source": {
+          "source": 36,
+          "memory": 1,
+          "ingest": 1
+        },
+        "ingest": {
+          "ingest": 33
+        },
+        "project": {
+          "project": 37,
+          "memory": 1
+        },
+        "planner": {
+          "planner": 29,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.5970588235294118
+    },
+    "qwen3-4b__zero_shot__constrained": {
+      "system": "qwen3-4b__zero_shot__constrained",
+      "n": 340,
+      "accuracy": 0.5264705882352941,
+      "accuracy_ci95": [
+        0.47058823529411764,
+        0.5823529411764706
+      ],
+      "macro_f1": 0.48010028329417964,
+      "per_subset_accuracy": {
+        "canonical": 0.6111111111111112,
+        "hard": 0.4810126582278481,
+        "paraphrase": 0.49019607843137253
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.45454545454545453,
+          "recall": 0.125,
+          "f1": 0.196078431372549,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.16666666666666666,
+          "recall": 0.025,
+          "f1": 0.04347826086956522,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.6041666666666666,
+          "recall": 0.7073170731707317,
+          "f1": 0.6516853932584269,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.4657534246575342,
+          "recall": 0.85,
+          "f1": 0.6017699115044248,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.2676056338028169,
+          "recall": 0.475,
+          "f1": 0.3423423423423423,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.5925925925925926,
+          "recall": 0.8421052631578947,
+          "f1": 0.6956521739130435,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.625,
+          "recall": 0.45454545454545453,
+          "f1": 0.5263157894736842,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.8604651162790697,
+          "recall": 0.9736842105263158,
+          "f1": 0.9135802469135803,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.7,
+          "recall": 0.23333333333333334,
+          "f1": 0.35,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 1.460674332579776,
+        "p50_s": 1.347747832944151,
+        "p95_s": 2.012594450009056,
+        "max_s": 3.3304764580680057
+      },
+      "confusion": {
+        "automation": {
+          "automation": 5,
+          "code": 10,
+          "task": 8,
+          "qa": 16,
+          "source": 1
+        },
+        "memory": {
+          "qa": 23,
+          "task": 6,
+          "source": 5,
+          "project": 2,
+          "memory": 1,
+          "code": 3
+        },
+        "code": {
+          "code": 29,
+          "ingest": 3,
+          "planner": 2,
+          "memory": 1,
+          "qa": 2,
+          "source": 2,
+          "automation": 1,
+          "task": 1
+        },
+        "task": {
+          "task": 34,
+          "qa": 3,
+          "code": 1,
+          "memory": 1,
+          "ingest": 1
+        },
+        "qa": {
+          "ingest": 3,
+          "planner": 1,
+          "qa": 19,
+          "source": 5,
+          "code": 5,
+          "task": 3,
+          "memory": 2,
+          "project": 2
+        },
+        "source": {
+          "source": 32,
+          "ingest": 2,
+          "qa": 3,
+          "project": 1
+        },
+        "ingest": {
+          "ingest": 15,
+          "automation": 5,
+          "qa": 4,
+          "source": 9
+        },
+        "project": {
+          "project": 37,
+          "memory": 1
+        },
+        "planner": {
+          "task": 21,
+          "planner": 7,
+          "qa": 1,
+          "project": 1
+        }
+      },
+      "llm_call_rate": 1.0,
+      "parse_failures": 0,
+      "mean_output_tokens": 10.152941176470588
+    },
+    "hybrid[full+qwen3-4b__zero_shot__constrained]": {
+      "system": "hybrid[full+qwen3-4b__zero_shot__constrained]",
+      "n": 340,
+      "accuracy": 0.6647058823529411,
+      "accuracy_ci95": [
+        0.6147058823529412,
+        0.7176470588235294
+      ],
+      "macro_f1": 0.6619047327021735,
+      "per_subset_accuracy": {
+        "canonical": 1.0,
+        "hard": 0.6075949367088608,
+        "paraphrase": 0.45751633986928103
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.6363636363636364,
+          "recall": 0.525,
+          "f1": 0.5753424657534246,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.7857142857142857,
+          "recall": 0.55,
+          "f1": 0.6470588235294117,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.7872340425531915,
+          "recall": 0.9024390243902439,
+          "f1": 0.8409090909090909,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.6153846153846154,
+          "recall": 0.8,
+          "f1": 0.6956521739130435,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.39473684210526316,
+          "recall": 0.75,
+          "f1": 0.5172413793103448,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.6666666666666666,
+          "recall": 0.7368421052631579,
+          "f1": 0.7,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.8,
+          "recall": 0.48484848484848486,
+          "f1": 0.6037735849056605,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9354838709677419,
+          "recall": 0.7631578947368421,
+          "f1": 0.8405797101449276,
+          "support": 38
+        },
+        "planner": {
+          "precision": 1.0,
+          "recall": 0.36666666666666664,
+          "f1": 0.5365853658536585,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.5481665920099819,
+        "p50_s": 2.1044397726655006e-06,
+        "p95_s": 1.5744648818275893,
+        "max_s": 1.9417151249945164
+      },
+      "confusion": {
+        "automation": {
+          "automation": 21,
+          "source": 1,
+          "qa": 10,
+          "code": 6,
+          "task": 2
+        },
+        "memory": {
+          "memory": 22,
+          "qa": 12,
+          "task": 2,
+          "source": 3,
+          "code": 1
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 32,
+          "code": 1,
+          "qa": 5,
+          "memory": 1,
+          "ingest": 1
+        },
+        "qa": {
+          "qa": 30,
+          "memory": 1,
+          "source": 3,
+          "project": 1,
+          "ingest": 2,
+          "code": 2,
+          "task": 1
+        },
+        "source": {
+          "source": 28,
+          "ingest": 1,
+          "qa": 5,
+          "project": 1,
+          "memory": 1,
+          "automation": 2
+        },
+        "ingest": {
+          "ingest": 16,
+          "qa": 4,
+          "source": 7,
+          "automation": 6
+        },
+        "project": {
+          "project": 29,
+          "qa": 4,
+          "memory": 1,
+          "automation": 4
+        },
+        "planner": {
+          "planner": 11,
+          "task": 12,
+          "qa": 6,
+          "memory": 1
+        }
+      },
+      "llm_call_rate": 0.40588235294117647
+    },
+    "hybrid[precise+qwen3-4b__zero_shot__constrained]": {
+      "system": "hybrid[precise+qwen3-4b__zero_shot__constrained]",
+      "n": 340,
+      "accuracy": 0.6294117647058823,
+      "accuracy_ci95": [
+        0.5764705882352941,
+        0.6823529411764706
+      ],
+      "macro_f1": 0.6064933581661182,
+      "per_subset_accuracy": {
+        "canonical": 0.8425925925925926,
+        "hard": 0.5822784810126582,
+        "paraphrase": 0.5032679738562091
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.625,
+          "recall": 0.125,
+          "f1": 0.20833333333333334,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.7857142857142857,
+          "recall": 0.55,
+          "f1": 0.6470588235294117,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.6727272727272727,
+          "recall": 0.9024390243902439,
+          "f1": 0.7708333333333333,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.5147058823529411,
+          "recall": 0.875,
+          "f1": 0.6481481481481481,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.3333333333333333,
+          "recall": 0.475,
+          "f1": 0.3917525773195876,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.6326530612244898,
+          "recall": 0.8157894736842105,
+          "f1": 0.7126436781609196,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.7391304347826086,
+          "recall": 0.5151515151515151,
+          "f1": 0.6071428571428571,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.925,
+          "recall": 0.9736842105263158,
+          "f1": 0.9487179487179489,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.9166666666666666,
+          "recall": 0.36666666666666664,
+          "f1": 0.5238095238095238,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.8113391037961907,
+        "p50_s": 1.1915157290059142,
+        "p95_s": 1.6577507669862825,
+        "max_s": 2.050901750102639
+      },
+      "confusion": {
+        "automation": {
+          "automation": 5,
+          "code": 10,
+          "task": 8,
+          "qa": 16,
+          "source": 1
+        },
+        "memory": {
+          "memory": 22,
+          "qa": 12,
+          "task": 2,
+          "source": 3,
+          "code": 1
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 35,
+          "code": 1,
+          "qa": 2,
+          "memory": 1,
+          "ingest": 1
+        },
+        "qa": {
+          "ingest": 3,
+          "planner": 1,
+          "qa": 19,
+          "source": 5,
+          "code": 6,
+          "task": 3,
+          "memory": 1,
+          "project": 2
+        },
+        "source": {
+          "source": 31,
+          "ingest": 2,
+          "qa": 3,
+          "project": 1,
+          "memory": 1
+        },
+        "ingest": {
+          "ingest": 17,
+          "qa": 4,
+          "source": 9,
+          "automation": 3
+        },
+        "project": {
+          "project": 37,
+          "memory": 1
+        },
+        "planner": {
+          "planner": 11,
+          "task": 17,
+          "memory": 1,
+          "qa": 1
+        }
+      },
+      "llm_call_rate": 0.5970588235294118
+    },
+    "qwen3-4b__zero_shot__free": {
+      "system": "qwen3-4b__zero_shot__free",
+      "n": 18,
+      "accuracy": 0.6666666666666666,
+      "accuracy_ci95": [
+        0.4444444444444444,
+        0.8888888888888888
+      ],
+      "macro_f1": 0.5851851851851851,
+      "per_subset_accuracy": {
+        "canonical": 0.6666666666666666
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "memory": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "code": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "support": 2
+        },
+        "task": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 2
+        },
+        "qa": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "source": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "ingest": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "project": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "planner": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "support": 2
+        }
+      },
+      "latency": {
+        "mean_s": 103.58700784028042,
+        "p50_s": 67.78178912500152,
+        "p95_s": 286.44291961246046,
+        "max_s": 334.09818795800675
+      },
+      "confusion": {
+        "automation": {
+          "task": 1,
+          "code": 1
+        },
+        "memory": {
+          "memory": 2
+        },
+        "code": {
+          "code": 1,
+          "source": 1
+        },
+        "task": {
+          "task": 2
+        },
+        "qa": {
+          "ingest": 1,
+          "planner": 1
+        },
+        "source": {
+          "source": 2
+        },
+        "ingest": {
+          "ingest": 2
+        },
+        "project": {
+          "project": 2
+        },
+        "planner": {
+          "task": 1,
+          "planner": 1
+        }
+      },
+      "llm_call_rate": 1.0,
+      "parse_failures": 0,
+      "mean_output_tokens": 1135.9444444444443
+    },
+    "hybrid[full+qwen3-4b__zero_shot__free]": {
+      "system": "hybrid[full+qwen3-4b__zero_shot__free]",
+      "n": 18,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        1.0,
+        1.0
+      ],
+      "macro_f1": 1.0,
+      "per_subset_accuracy": {
+        "canonical": 1.0
+      },
+      "per_label": {
+        "automation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "memory": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "code": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "task": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "qa": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "ingest": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "project": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "planner": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        }
+      },
+      "latency": {
+        "mean_s": 1.3797155891855557e-06,
+        "p50_s": 8.749775588512421e-07,
+        "p95_s": 4.656321834772821e-06,
+        "max_s": 6.958958692848682e-06
+      },
+      "confusion": {
+        "automation": {
+          "automation": 2
+        },
+        "memory": {
+          "memory": 2
+        },
+        "code": {
+          "code": 2
+        },
+        "task": {
+          "task": 2
+        },
+        "qa": {
+          "qa": 2
+        },
+        "source": {
+          "source": 2
+        },
+        "ingest": {
+          "ingest": 2
+        },
+        "project": {
+          "project": 2
+        },
+        "planner": {
+          "planner": 2
+        }
+      },
+      "llm_call_rate": 0.0
+    },
+    "hybrid[precise+qwen3-4b__zero_shot__free]": {
+      "system": "hybrid[precise+qwen3-4b__zero_shot__free]",
+      "n": 18,
+      "accuracy": 0.7777777777777778,
+      "accuracy_ci95": [
+        0.5555555555555556,
+        0.9444444444444444
+      ],
+      "macro_f1": 0.6888888888888889,
+      "per_subset_accuracy": {
+        "canonical": 0.7777777777777778
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "memory": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "code": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "task": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "qa": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "source": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "ingest": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "project": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "planner": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        }
+      },
+      "latency": {
+        "mean_s": 11.412210578603359,
+        "p50_s": 8.540228009223938e-07,
+        "p95_s": 69.60203529548014,
+        "max_s": 85.8115542079322
+      },
+      "confusion": {
+        "automation": {
+          "task": 1,
+          "code": 1
+        },
+        "memory": {
+          "memory": 2
+        },
+        "code": {
+          "code": 2
+        },
+        "task": {
+          "task": 2
+        },
+        "qa": {
+          "ingest": 1,
+          "planner": 1
+        },
+        "source": {
+          "source": 2
+        },
+        "ingest": {
+          "ingest": 2
+        },
+        "project": {
+          "project": 2
+        },
+        "planner": {
+          "planner": 2
+        }
+      },
+      "llm_call_rate": 0.2222222222222222
+    },
+    "tfidf_logreg_cv5": {
+      "system": "tfidf_logreg_cv5",
+      "n": 340,
+      "accuracy": 0.9264705882352942,
+      "accuracy_ci95": [
+        0.8970588235294118,
+        0.9529411764705882
+      ],
+      "macro_f1": 0.924667173402494,
+      "per_subset_accuracy": {
+        "canonical": 0.9814814814814815,
+        "hard": 0.8734177215189873,
+        "paraphrase": 0.9150326797385621
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.9523809523809523,
+          "recall": 1.0,
+          "f1": 0.975609756097561,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.9523809523809523,
+          "recall": 1.0,
+          "f1": 0.975609756097561,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.9512195121951219,
+          "recall": 0.9512195121951219,
+          "f1": 0.9512195121951219,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.926829268292683,
+          "recall": 0.95,
+          "f1": 0.9382716049382716,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.8157894736842105,
+          "recall": 0.775,
+          "f1": 0.7948717948717949,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.9459459459459459,
+          "recall": 0.9210526315789473,
+          "f1": 0.9333333333333332,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.8648648648648649,
+          "recall": 0.9696969696969697,
+          "f1": 0.9142857142857143,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9722222222222222,
+          "recall": 0.9210526315789473,
+          "f1": 0.9459459459459458,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.9615384615384616,
+          "recall": 0.8333333333333334,
+          "f1": 0.8928571428571429,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.0010765807620961877,
+        "p50_s": 0.0009334375499747694,
+        "p95_s": 0.0015789207944180818,
+        "max_s": 0.004420916084200144
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 40
+        },
+        "code": {
+          "code": 39,
+          "qa": 2
+        },
+        "task": {
+          "task": 38,
+          "planner": 1,
+          "qa": 1
+        },
+        "qa": {
+          "qa": 31,
+          "ingest": 3,
+          "code": 2,
+          "project": 1,
+          "task": 1,
+          "automation": 2
+        },
+        "source": {
+          "source": 35,
+          "ingest": 2,
+          "qa": 1
+        },
+        "ingest": {
+          "ingest": 32,
+          "qa": 1
+        },
+        "project": {
+          "project": 35,
+          "source": 2,
+          "qa": 1
+        },
+        "planner": {
+          "planner": 25,
+          "qa": 1,
+          "memory": 2,
+          "task": 2
+        }
+      },
+      "llm_call_rate": 0.0
+    },
+    "hybrid[full+tfidf_logreg_cv5]": {
+      "system": "hybrid[full+tfidf_logreg_cv5]",
+      "n": 340,
+      "accuracy": 0.861764705882353,
+      "accuracy_ci95": [
+        0.8235294117647058,
+        0.9
+      ],
+      "macro_f1": 0.8627806901929583,
+      "per_subset_accuracy": {
+        "canonical": 1.0,
+        "hard": 0.7468354430379747,
+        "paraphrase": 0.8235294117647058
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.888888888888889,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8809523809523809,
+          "recall": 0.925,
+          "f1": 0.9024390243902439,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.9736842105263158,
+          "recall": 0.9024390243902439,
+          "f1": 0.9367088607594938,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8780487804878049,
+          "recall": 0.9,
+          "f1": 0.888888888888889,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.6363636363636364,
+          "recall": 0.875,
+          "f1": 0.7368421052631579,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.9666666666666667,
+          "recall": 0.7631578947368421,
+          "f1": 0.8529411764705883,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.90625,
+          "recall": 0.8787878787878788,
+          "f1": 0.8923076923076922,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9655172413793104,
+          "recall": 0.7368421052631579,
+          "f1": 0.835820895522388,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.9565217391304348,
+          "recall": 0.7333333333333333,
+          "f1": 0.8301886792452831,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.00045008822241524124,
+        "p50_s": 2.1044397726655006e-06,
+        "p95_s": 0.0014125878107734025,
+        "max_s": 0.004423707025125623
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 37,
+          "qa": 3
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 36,
+          "planner": 1,
+          "qa": 3
+        },
+        "qa": {
+          "qa": 35,
+          "code": 1,
+          "project": 1,
+          "task": 1,
+          "ingest": 1,
+          "automation": 1
+        },
+        "source": {
+          "source": 29,
+          "qa": 4,
+          "ingest": 2,
+          "memory": 1,
+          "automation": 2
+        },
+        "ingest": {
+          "ingest": 29,
+          "qa": 1,
+          "automation": 3
+        },
+        "project": {
+          "project": 28,
+          "qa": 4,
+          "memory": 1,
+          "automation": 4,
+          "source": 1
+        },
+        "planner": {
+          "planner": 22,
+          "qa": 5,
+          "memory": 2,
+          "task": 1
+        }
+      },
+      "llm_call_rate": 0.40588235294117647
+    },
+    "hybrid[precise+tfidf_logreg_cv5]": {
+      "system": "hybrid[precise+tfidf_logreg_cv5]",
+      "n": 340,
+      "accuracy": 0.9147058823529411,
+      "accuracy_ci95": [
+        0.8823529411764706,
+        0.9441176470588235
+      ],
+      "macro_f1": 0.91365904149402,
+      "per_subset_accuracy": {
+        "canonical": 0.9814814814814815,
+        "hard": 0.8481012658227848,
+        "paraphrase": 0.9019607843137255
+      },
+      "per_label": {
+        "automation": {
+          "precision": 0.9523809523809523,
+          "recall": 1.0,
+          "f1": 0.975609756097561,
+          "support": 40
+        },
+        "memory": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1": 0.9411764705882353,
+          "support": 40
+        },
+        "code": {
+          "precision": 0.925,
+          "recall": 0.9024390243902439,
+          "f1": 0.9135802469135802,
+          "support": 41
+        },
+        "task": {
+          "precision": 0.8636363636363636,
+          "recall": 0.95,
+          "f1": 0.9047619047619048,
+          "support": 40
+        },
+        "qa": {
+          "precision": 0.8529411764705882,
+          "recall": 0.725,
+          "f1": 0.7837837837837837,
+          "support": 40
+        },
+        "source": {
+          "precision": 0.9714285714285714,
+          "recall": 0.8947368421052632,
+          "f1": 0.9315068493150684,
+          "support": 38
+        },
+        "ingest": {
+          "precision": 0.8648648648648649,
+          "recall": 0.9696969696969697,
+          "f1": 0.9142857142857143,
+          "support": 33
+        },
+        "project": {
+          "precision": 0.9722222222222222,
+          "recall": 0.9210526315789473,
+          "f1": 0.9459459459459458,
+          "support": 38
+        },
+        "planner": {
+          "precision": 0.9629629629629629,
+          "recall": 0.8666666666666667,
+          "f1": 0.912280701754386,
+          "support": 30
+        }
+      },
+      "latency": {
+        "mean_s": 0.0006626475557876641,
+        "p50_s": 0.0007839169702492654,
+        "p95_s": 0.0014396788552403451,
+        "max_s": 0.0044236661633476615
+      },
+      "confusion": {
+        "automation": {
+          "automation": 40
+        },
+        "memory": {
+          "memory": 40
+        },
+        "code": {
+          "code": 37,
+          "task": 3,
+          "memory": 1
+        },
+        "task": {
+          "task": 38,
+          "planner": 1,
+          "qa": 1
+        },
+        "qa": {
+          "qa": 29,
+          "ingest": 3,
+          "code": 3,
+          "project": 1,
+          "task": 2,
+          "automation": 2
+        },
+        "source": {
+          "source": 34,
+          "ingest": 2,
+          "qa": 1,
+          "memory": 1
+        },
+        "ingest": {
+          "ingest": 32,
+          "qa": 1
+        },
+        "project": {
+          "project": 35,
+          "memory": 1,
+          "qa": 1,
+          "source": 1
+        },
+        "planner": {
+          "planner": 26,
+          "qa": 1,
+          "memory": 2,
+          "task": 1
+        }
+      },
+      "llm_call_rate": 0.5970588235294118
+    }
+  },
+  "mcnemar": {
+    "hybrid[full+qwen3-4b__definitions__constrained] vs qwen3-4b__definitions__constrained": {
+      "hybrid_only_right": 15,
+      "base_only_right": 33,
+      "p_value": 0.013283281562245008
+    },
+    "hybrid[precise+qwen3-4b__definitions__constrained] vs qwen3-4b__definitions__constrained": {
+      "hybrid_only_right": 5,
+      "base_only_right": 9,
+      "p_value": 0.4239501953125
+    },
+    "hybrid[full+qwen3-4b__few_shot__constrained] vs qwen3-4b__few_shot__constrained": {
+      "hybrid_only_right": 10,
+      "base_only_right": 33,
+      "p_value": 0.0006061066312668117
+    },
+    "hybrid[precise+qwen3-4b__few_shot__constrained] vs qwen3-4b__few_shot__constrained": {
+      "hybrid_only_right": 3,
+      "base_only_right": 9,
+      "p_value": 0.14599609375
+    },
+    "hybrid[full+qwen3-4b__zero_shot__constrained] vs qwen3-4b__zero_shot__constrained": {
+      "hybrid_only_right": 67,
+      "base_only_right": 20,
+      "p_value": 4.3053681250011924e-07
+    },
+    "hybrid[precise+qwen3-4b__zero_shot__constrained] vs qwen3-4b__zero_shot__constrained": {
+      "hybrid_only_right": 40,
+      "base_only_right": 5,
+      "p_value": 7.878384167270269e-08
+    },
+    "hybrid[full+tfidf_logreg_cv5] vs tfidf_logreg_cv5": {
+      "hybrid_only_right": 8,
+      "base_only_right": 30,
+      "p_value": 0.0004719867429230362
+    },
+    "hybrid[precise+tfidf_logreg_cv5] vs tfidf_logreg_cv5": {
+      "hybrid_only_right": 3,
+      "base_only_right": 7,
+      "p_value": 0.34375
+    }
+  }
+}

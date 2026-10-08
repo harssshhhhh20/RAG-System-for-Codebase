@@ -1,10 +1,6 @@
-from langchain_ollama import ChatOllama
 import time
 
-llm = ChatOllama(
-    model="qwen3:4b",
-    temperature=0
-)
+from shivi import llm
 
 def normalize_request(request,intent):
     prompt = f"""
@@ -66,12 +62,7 @@ def normalize_request(request,intent):
     Output:
     """
     start = time.time()
-    response = llm.invoke(
-        prompt
-    )
+    response = llm.ask(prompt)
     print(f"Normalize time: {time.time()-start:.2f}s")
 
-    return (
-        response.content
-        .strip()
-    )
+    return response

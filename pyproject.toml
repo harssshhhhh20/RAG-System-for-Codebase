@@ -4,22 +4,34 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "shivi-agent"
-version = "0.1.0"
-description = "Terminal AI Assistant"
+version = "0.2.0"
+description = "Local-first terminal AI assistant for codebases (Ollama + RAG)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Harsh Maurya" }]
 dependencies = [
-    "langchain",
-    "langchain-community",
-    "langchain-ollama",
-    "langchain-chroma",
-    "langchain-huggingface",
-    "langchain-text-splitters",
-    "chromadb",
-    "sentence-transformers",
-    "pypdf"
+    "langchain>=0.3",
+    "langchain-community>=0.3",
+    "langchain-ollama>=0.3.4",
+    "langchain-chroma>=0.2",
+    "langchain-huggingface>=0.1",
+    "langchain-text-splitters>=0.3",
+    "chromadb>=0.5",
+    "sentence-transformers>=3.0",
+    "pypdf>=4.0",
 ]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+# The router experiment itself needs only the standard library and a
+# running Ollama server; scikit-learn adds the trained-classifier baseline.
+eval = ["scikit-learn>=1.4", "numpy>=1.26"]
 
 [project.scripts]
 shivi = "shivi.main:main"
 
 [tool.setuptools]
 packages = ["shivi"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -26,7 +26,7 @@ def save_sources(sources):
         )
 
 def add_sources(path):
-    path = os.path.abspath(path)
+    path = os.path.abspath(os.path.expanduser(path))
     if not os.path.exists(path):
         print("Path does not exist")
         return
@@ -34,14 +34,12 @@ def add_sources(path):
     if path in sources:
         print("Source already exists")
         return
-    print(type(sources))
-    print(sources)
     sources.append(path)
     save_sources(sources)
     print(f"Added - {path}")
 
 def remove_source(path):
-    path = os.path.abspath(path)
+    path = os.path.abspath(os.path.expanduser(path))
     sources = load_sources()
     if path not in sources:
         print("Source NOT found")
@@ -61,18 +59,16 @@ def list_sources():
 
 def process_source_request(command):
     command = command.strip()
-    if "show sources" in command:
+    lowered = command.lower()
+    if lowered.startswith(("show source", "list source")):
         list_sources()
         return
-    if command.startswith("add source"):
-        path = command.replace("add source","").strip()
+    if lowered.startswith("add source"):
+        path = command[len("add source"):].strip()
         add_sources(path)
         return
-    if command.startswith("remove source "):
-        path = command.replace(
-            "remove source ",
-            ""
-        ).strip()
+    if lowered.startswith(("remove source ", "delete source ")):
+        path = command.split(maxsplit=2)[2].strip()
         remove_source(path)
         return
     print("Unknown source command.")
